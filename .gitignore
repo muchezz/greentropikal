@@ -1,0 +1,92 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Dependency directories
+vendor/
+go.sum
+
+# Go workspace file
+go.work
+
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+credentials.json
+aws-credentials.json
+gcp-credentials.json
+azure-credentials.json
+
+# Cloud provider configs
+~/.aws/credentials
+~/.aws/config
+~/.gcp/*
+~/.azure/*
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+
+# Build artifacts
+bin/
+dist/
+build/
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# OS specific
+Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Project specific
+config.local.yaml
+secrets.yaml
+.env.production
+audit_reports/
+cost_data/
+
+# Node modules (if frontend is added)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Python venv (if scripts added)
+venv/
+env/
+ENV/
