@@ -136,17 +136,27 @@ is confined to the hero gradient and the mark.
 Type is Inter, self-hosted as a single variable `woff2` covering 100–900 across
 latin (48 KB), so the page still makes no third-party requests.
 
-The homepage follows the supplied design reference: an 84px header, a
-two-column hero (46/54) with a tapered path illustration over a faint dot
-field, two product showcases split text-left / interface-right with the
-screenshot running past the card edge, and a four-column values row. Corners
-are 10px on buttons, 12px on screenshots, 16px on cards; shadows stay at
-`0 8px 30px rgba(15,23,42,.06)` except under product screenshots.
+The homepage is an 84px header, a typographic hero, two product showcases
+split text-left / interface-right with the screenshot running past the card
+edge, and a four-column values row. Corners are 10px on buttons, 12px on
+screenshots, 16px on cards; shadows stay at `0 8px 30px rgba(15,23,42,.06)`
+except under product screenshots.
 
-The hero headline carries an explicit `<br>` so it breaks after "technology" as
-the reference does, rather than leaving it to the measure. The break is removed
-below 820px, where the headline wraps naturally and the path moves beneath the
-copy.
+**The hero carries no illustration.** It is a full-measure headline, a short
+lede, the two calls to action, and then a hairline index of the two products
+that closes the block. The reasoning: an abstract graphic in the hero spends
+the page's first and largest visual budget on decoration, and it is the single
+strongest tell of a generated site. Naming the products instead makes the hero
+a table of contents for the company — real destinations rather than a picture
+of an idea — and it lets the first *image* on the page be the actual Njira
+Vault interface a few hundred pixels below, which lands harder for having
+waited. The three stages the company talks about (learn, build, go further)
+are carried by the sentence rather than by an illustration of one.
+
+The headline is set at `clamp(2.5rem, 7.8vw, 7rem)` so it fills the measure,
+and carries an explicit `<br>` so it breaks after "technology". The break is
+removed below 820px, where it wraps naturally; the product index stacks to one
+column below 620px.
 
 ### Brand assets
 
