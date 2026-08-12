@@ -1,29 +1,38 @@
 /* NjiraLab design system
    ----------------------
-   Palette hierarchy: deep indigo surfaces carry the page, violet is the single
-   brand accent, lavender handles accent *text* (violet is too dark to read on
-   these surfaces), and cyan and amber appear only where they mean something —
-   cyan for technology, amber for a destination reached. */
+   Four tonal levels carry the page (sunken / base / surface / elevated), violet
+   is the one brand accent, and lavender does the accent *text* work because
+   violet is too dark to read on these surfaces.
+
+   Cyan and amber are signals, not decoration. Cyan means technology and
+   movement: capability icons, live states, waypoints along a path. Amber means
+   progress and destination: the last step, the goal reached, the point of no
+   return. Neither is ever used on a large surface. */
 
 :root {
-  --indigo-950: #0b0a1b;
-  --indigo-900: #100e22;
-  --indigo-800: #17142f; /* Deep Indigo */
-  --indigo-700: #1f1b3c;
-  --indigo-600: #2a2450;
+  /* Foundation — four tonal levels so surfaces read as depth rather than as
+     one flat wall of dark purple. */
+  --sunken: #0a0918; /* inputs, code, insets: below the page */
+  --base: #0f0d20; /* the page itself */
+  --surface: #17142f; /* cards and bands */
+  --elevated: #211c3d; /* hover and raised surfaces */
 
-  --violet: #7c3aed;
+  /* Brand */
+  --violet: #7c3aed; /* primary accent, fills only */
   --violet-lift: #8b5cf6;
-  --lavender: #a78bfa;
-  --cyan: #22d3ee;
-  --amber: #f59e0b;
+  --lavender: #a78bfa; /* accent *text*: violet is too dark to read here */
 
-  --white: #f8fafc;
-  --slate: #94a3b8;
-  --slate-dim: #6f7c93;
+  /* Signals — each carries one meaning and appears only where it applies. */
+  --cyan: #22d3ee; /* technology and movement: icons, live states, waypoints */
+  --amber: #f59e0b; /* progress and destination: the end of a path, reached */
 
-  --line: rgba(167, 139, 250, 0.14);
-  --line-strong: rgba(167, 139, 250, 0.3);
+  /* Type */
+  --text: #f8fafc;
+  --text-2: #cbd5e1; /* body copy */
+  --text-3: #94a3b8; /* labels, captions, footnotes */
+
+  --line: #2a2445;
+  --line-strong: #3b3363;
 
   --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
@@ -50,8 +59,8 @@ html {
 
 body {
   margin: 0;
-  background: var(--indigo-900);
-  color: var(--white);
+  background: var(--base);
+  color: var(--text);
   font-family: var(--font);
   font-size: 1.0625rem;
   line-height: 1.65;
@@ -159,12 +168,12 @@ h3 {
 .lead {
   max-width: min(46ch, 100%);
   font-size: clamp(1.05rem, 1.6vw, 1.25rem);
-  color: var(--slate);
+  color: var(--text-2);
   line-height: 1.6;
 }
 
 .muted {
-  color: var(--slate);
+  color: var(--text-2);
 }
 
 .section {
@@ -178,7 +187,7 @@ h3 {
 
 .section-head p {
   margin-top: 1.1rem;
-  color: var(--slate);
+  color: var(--text-2);
   font-size: 1.075rem;
 }
 
@@ -195,7 +204,7 @@ h3 {
   background: transparent;
   border: 1px solid transparent;
   border-radius: 10px;
-  color: var(--white);
+  color: var(--text);
   font: inherit;
   font-size: 0.97rem;
   font-weight: 600;
@@ -220,7 +229,7 @@ h3 {
 
 .btn--ghost {
   border-color: var(--line-strong);
-  color: var(--white);
+  color: var(--text);
 }
 
 .btn--ghost:hover {
@@ -270,7 +279,7 @@ h3 {
 }
 
 .nav.is-scrolled {
-  background: rgba(16, 14, 34, 0.88);
+  background: rgba(15, 13, 32, 0.88);
   backdrop-filter: blur(14px);
   border-bottom-color: var(--line);
 }
@@ -300,7 +309,7 @@ h3 {
 }
 
 .brand__sub {
-  color: var(--slate);
+  color: var(--text-2);
   font-weight: 500;
   letter-spacing: -0.01em;
 }
@@ -325,14 +334,14 @@ h3 {
   border-radius: 8px;
   font-size: 0.95rem;
   font-weight: 500;
-  color: var(--slate);
+  color: var(--text-2);
   transition: color 0.2s var(--ease), background-color 0.2s var(--ease);
 }
 
 .nav__link:hover,
 .nav__link[aria-expanded="true"] {
-  color: var(--white);
-  background: rgba(167, 139, 250, 0.08);
+  color: var(--text);
+  background: var(--elevated);
 }
 
 .nav__actions {
@@ -357,7 +366,7 @@ h3 {
   left: 0;
   width: 310px;
   padding: 0.5rem;
-  background: var(--indigo-800);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.8);
@@ -382,7 +391,7 @@ h3 {
 }
 
 .dropdown__item:hover {
-  background: rgba(167, 139, 250, 0.09);
+  background: var(--elevated);
 }
 
 .dropdown__item strong {
@@ -393,7 +402,7 @@ h3 {
 
 .dropdown__item span {
   font-size: 0.85rem;
-  color: var(--slate);
+  color: var(--text-2);
 }
 
 .nav__toggle {
@@ -404,7 +413,7 @@ h3 {
   background: none;
   border: 1px solid var(--line-strong);
   border-radius: 10px;
-  color: var(--white);
+  color: var(--text);
   cursor: pointer;
 }
 
@@ -504,11 +513,11 @@ h3 {
   padding-top: 1.75rem;
   border-top: 1px solid var(--line);
   font-size: 0.9rem;
-  color: var(--slate-dim);
+  color: var(--text-3);
 }
 
 .hero__products a {
-  color: var(--white);
+  color: var(--text);
   font-weight: 600;
 }
 
@@ -521,15 +530,13 @@ h3 {
   height: auto;
 }
 
-.hero__art .draw {
-  --len: 600;
-}
+
 
 /* ---------- Structure band ---------- */
 
 .structure {
   border-block: 1px solid var(--line);
-  background: var(--indigo-800);
+  background: var(--surface);
 }
 
 .structure__grid {
@@ -547,6 +554,10 @@ h3 {
   color: var(--lavender);
 }
 
+.structure__col--tech h2 {
+  color: var(--cyan);
+}
+
 .structure__list {
   display: flex;
   flex-wrap: wrap;
@@ -559,17 +570,17 @@ h3 {
   border: 1px solid var(--line);
   border-radius: 999px;
   font-size: 0.88rem;
-  color: var(--slate);
+  color: var(--text-2);
   transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
 }
 
 a.chip:hover {
   border-color: var(--lavender);
-  color: var(--white);
+  color: var(--text);
 }
 
 .chip--product {
-  color: var(--white);
+  color: var(--text);
   border-color: var(--line-strong);
   font-weight: 600;
 }
@@ -603,7 +614,7 @@ a.chip:hover {
   font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 0;
-  color: var(--slate);
+  color: var(--text-2);
 }
 
 .product__kicker {
@@ -616,7 +627,7 @@ a.chip:hover {
 .product__desc {
   margin-top: 1.25rem;
   max-width: min(44ch, 100%);
-  color: var(--slate);
+  color: var(--text-2);
 }
 
 .product__points {
@@ -629,7 +640,7 @@ a.chip:hover {
   position: relative;
   padding-left: 1.5rem;
   font-size: 0.95rem;
-  color: var(--slate);
+  color: var(--text-2);
 }
 
 .product__points li::before {
@@ -654,14 +665,14 @@ a.chip:hover {
 .panel {
   position: relative;
   padding: clamp(1.5rem, 3vw, 2.25rem);
-  background: var(--indigo-800);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 18px;
   overflow: hidden;
 }
 
 .panel--vault {
-  background: linear-gradient(160deg, var(--indigo-800), var(--indigo-950));
+  background: linear-gradient(160deg, var(--surface), var(--sunken));
 }
 
 .panel__label {
@@ -671,7 +682,7 @@ a.chip:hover {
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--slate-dim);
+  color: var(--text-3);
 }
 
 /* StudyZora: material → practice → mastery, expressed as a filling path. */
@@ -686,7 +697,7 @@ a.chip:hover {
   align-items: center;
   gap: 0.9rem;
   padding: 0.9rem 1rem;
-  background: rgba(167, 139, 250, 0.05);
+  background: var(--elevated);
   border: 1px solid var(--line);
   border-radius: 12px;
 }
@@ -712,7 +723,7 @@ a.chip:hover {
 
 .stack__row span {
   font-size: 0.83rem;
-  color: var(--slate);
+  color: var(--text-2);
 }
 
 .stack__row:last-child .stack__num {
@@ -732,7 +743,7 @@ a.chip:hover {
   align-items: center;
   gap: 0.75rem;
   font-size: 0.9rem;
-  color: var(--slate);
+  color: var(--text-2);
 }
 
 .flow__dot {
@@ -752,7 +763,7 @@ a.chip:hover {
 .flow__link {
   margin-top: 1.5rem;
   padding: 0.85rem 1rem;
-  background: rgba(11, 10, 27, 0.7);
+  background: rgba(10, 9, 24, 0.7);
   border: 1px solid var(--line);
   border-radius: 10px;
   font-family: var(--mono);
@@ -788,19 +799,19 @@ a.chip:hover {
 
 .tech {
   padding: clamp(1.5rem, 2.6vw, 2.1rem);
-  background: var(--indigo-800);
+  background: var(--surface);
   transition: background-color 0.25s var(--ease);
 }
 
 .tech:hover {
-  background: var(--indigo-700);
+  background: var(--elevated);
 }
 
 .tech__mark {
   width: 22px;
   height: 22px;
   margin-bottom: 1.1rem;
-  color: var(--lavender);
+  color: var(--cyan);
 }
 
 .tech h3 {
@@ -809,14 +820,14 @@ a.chip:hover {
 
 .tech p {
   font-size: 0.93rem;
-  color: var(--slate);
+  color: var(--text-2);
 }
 
 /* ---------- Philosophy ---------- */
 
 .philosophy {
   border-block: 1px solid var(--line);
-  background: var(--indigo-800);
+  background: var(--surface);
   text-align: center;
 }
 
@@ -830,7 +841,7 @@ a.chip:hover {
   max-width: min(44ch, 100%);
   margin: 1.75rem auto 0;
   font-size: clamp(1.05rem, 1.7vw, 1.25rem);
-  color: var(--slate);
+  color: var(--text-2);
 }
 
 .philosophy__path {
@@ -866,13 +877,13 @@ a.chip:hover {
   grid-template-columns: 8.5rem minmax(0, 1fr);
   gap: 1rem;
   padding: 1.15rem 1.35rem;
-  background: var(--indigo-800);
+  background: var(--surface);
   font-size: 0.93rem;
-  color: var(--slate);
+  color: var(--text-2);
 }
 
 .about__list strong {
-  color: var(--white);
+  color: var(--text);
   font-weight: 600;
 }
 
@@ -884,7 +895,7 @@ a.chip:hover {
   gap: clamp(2rem, 5vw, 4rem);
   align-items: start;
   padding: clamp(2rem, 4vw, 3.5rem);
-  background: var(--indigo-800);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 20px;
 }
@@ -905,10 +916,10 @@ a.chip:hover {
 .field select {
   width: 100%;
   padding: 0.75rem 0.9rem;
-  background: var(--indigo-950);
+  background: var(--sunken);
   border: 1px solid var(--line);
   border-radius: 10px;
-  color: var(--white);
+  color: var(--text);
   font: inherit;
   font-size: 0.95rem;
   transition: border-color 0.2s var(--ease);
@@ -927,7 +938,7 @@ a.chip:hover {
 }
 
 .field ::placeholder {
-  color: var(--slate-dim);
+  color: var(--text-3);
 }
 
 .contact .lead {
@@ -951,18 +962,18 @@ a.chip:hover {
 
 .contact__meta p,
 .contact__meta a {
-  color: var(--slate);
+  color: var(--text-2);
   font-size: 0.97rem;
 }
 
 .contact__meta a:hover {
-  color: var(--white);
+  color: var(--text);
 }
 
 .form-note {
   margin-top: 0.9rem;
   font-size: 0.85rem;
-  color: var(--slate-dim);
+  color: var(--text-3);
 }
 
 /* ---------- Footer ---------- */
@@ -982,7 +993,7 @@ a.chip:hover {
   max-width: min(30ch, 100%);
   margin-top: 1rem;
   font-size: 0.93rem;
-  color: var(--slate);
+  color: var(--text-2);
 }
 
 .footer h3 {
@@ -990,7 +1001,7 @@ a.chip:hover {
   font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--slate-dim);
+  color: var(--text-3);
 }
 
 .footer li + li {
@@ -999,11 +1010,11 @@ a.chip:hover {
 
 .footer a {
   font-size: 0.93rem;
-  color: var(--slate);
+  color: var(--text-2);
 }
 
 .footer a:hover {
-  color: var(--white);
+  color: var(--text);
 }
 
 .footer__bottom {
@@ -1015,7 +1026,7 @@ a.chip:hover {
   padding-top: 1.75rem;
   border-top: 1px solid var(--line);
   font-size: 0.85rem;
-  color: var(--slate-dim);
+  color: var(--text-3);
 }
 
 /* ---------- Motion ---------- */
@@ -1046,11 +1057,12 @@ a.chip:hover {
   }
 }
 
-/* The hero path draws itself once, then stays put. */
+/* The hero path draws itself once, then stays put. The path carries
+   pathLength="1", so the dash maths is the same whatever its real length. */
 .draw {
-  stroke-dasharray: var(--len, 600);
-  stroke-dashoffset: var(--len, 600);
-  animation: draw 1.6s var(--ease) 0.15s forwards;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.8s var(--ease) 0.15s forwards;
 }
 
 @keyframes draw {
@@ -1151,7 +1163,7 @@ a.chip:hover {
     overflow-y: auto;
     overscroll-behavior: contain;
     padding: 1rem 1.5rem 2rem;
-    background: var(--indigo-900);
+    background: var(--base);
     transform: translateY(-12px);
     opacity: 0;
     visibility: hidden;
@@ -1168,7 +1180,7 @@ a.chip:hover {
   .nav__link {
     padding: 0.9rem 0.25rem;
     font-size: 1.05rem;
-    color: var(--white);
+    color: var(--text);
     border-bottom: 1px solid var(--line);
     border-radius: 0;
   }
@@ -1179,7 +1191,7 @@ a.chip:hover {
     font-size: 0.75rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--slate-dim);
+    color: var(--text-3);
     border-bottom: 0;
     padding-bottom: 0.35rem;
   }

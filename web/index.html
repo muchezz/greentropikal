@@ -94,22 +94,35 @@
         </p>
       </div>
 
-      <!-- The path motif: steady progress toward a destination. -->
+      <!-- The brand concept, drawn: the N's second upstroke does not stop at the
+           letter — it leaves the mark and becomes the path, rising through
+           waypoints to a destination. Violet through the letter, cyan along the
+           journey, amber only where it arrives. -->
       <svg class="hero__art" viewBox="0 0 480 440" fill="none" aria-hidden="true">
-        <g stroke="#A78BFA" stroke-opacity="0.09" stroke-width="1">
-          <path d="M0 400h140M0 296h320M0 176h452"/>
-        </g>
-        <path class="draw" d="M28 400h112l68-104h112l68-120h64"
-              stroke="#7C3AED" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-        <g fill="#7C3AED" class="pulse">
-          <circle cx="140" cy="400" r="4.5"/>
-          <circle cx="208" cy="296" r="4.5"/>
-          <circle cx="320" cy="296" r="4.5"/>
-          <circle cx="388" cy="176" r="4.5"/>
-        </g>
+        <defs>
+          <linearGradient id="njira-path" gradientUnits="userSpaceOnUse"
+                          x1="64" y1="396" x2="410" y2="44">
+            <stop offset="0" stop-color="#7C3AED"/>
+            <stop offset="0.55" stop-color="#7C3AED"/>
+            <stop offset="1" stop-color="#22D3EE"/>
+          </linearGradient>
+        </defs>
+
+        <path class="draw" pathLength="1"
+              d="M64 396V226l106 140V226c0-50 36-74 88-76 54-2 80-24 88-58 8-30 33-46 65-48"
+              stroke="url(#njira-path)" stroke-width="4"
+              stroke-linecap="round" stroke-linejoin="round"/>
+
         <g class="pulse">
-          <circle cx="452" cy="176" r="13" stroke="#F59E0B" stroke-opacity="0.45" stroke-width="1"/>
-          <circle cx="452" cy="176" r="6.5" fill="#A78BFA"/>
+          <!-- where the letter ends and the journey begins -->
+          <circle cx="170" cy="226" r="5" fill="#7C3AED"/>
+          <!-- waypoints: violet, then cyan as the path picks up movement -->
+          <circle cx="258" cy="150" r="4.5" fill="#7C3AED"/>
+          <circle cx="346" cy="92" r="4.5" fill="#22D3EE"/>
+
+          <!-- destination reached -->
+          <circle cx="430" cy="44" r="13" stroke="#F59E0B" stroke-opacity="0.35" stroke-width="1"/>
+          <circle cx="430" cy="44" r="6.5" fill="#F59E0B"/>
         </g>
       </svg>
     </div>
@@ -125,7 +138,7 @@
           <a class="chip chip--product" href="/vault">Vault</a>
         </div>
       </div>
-      <div class="structure__col">
+      <div class="structure__col structure__col--tech">
         <h2>Technology</h2>
         <div class="structure__list">
           <a class="chip" href="#technology">Cloud &amp; Infrastructure</a>
