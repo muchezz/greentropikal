@@ -1,13 +1,13 @@
-# NjiraLab
+# NjiraLabs
 
 Building technology for human progress.
 
-This repository holds the NjiraLab website and **Njira Vault**, the company's secret-sharing
+This repository holds the NjiraLabs website and **Njira Vault**, the company's secret-sharing
 product. Both are served by a single Go binary with no runtime dependencies other
 than Redis.
 
 ```
-NjiraLab
+NjiraLabs
 ├── Products
 │   ├── StudyZora    — AI-powered learning (presented here, built elsewhere)
 │   └── Njira Vault  — secure secret sharing (built and served from this repo)
@@ -57,7 +57,7 @@ go run .
 | `REDIS_URL` | `localhost:6379` | Accepts `host:port` or a full `redis://` URL |
 | `REDIS_PASSWORD`, `REDIS_DB` | — | Used only with the `host:port` form |
 | `STUDYZORA_URL` | unset | When unset, the StudyZora call to action points at the contact section instead of inventing a destination |
-| `CONTACT_EMAIL` | `hello@njiralab.com` | Address shown in the contact section and used by the contact form's `mailto:` |
+| `CONTACT_EMAIL` | `hello@njiralab.com` (note: singular domain) | Address shown in the contact section and used by the contact form's `mailto:` |
 | `ALLOWED_ORIGINS` | unset | Comma-separated origins permitted to call the API cross-origin. Unset means same-origin only; `*` is ignored on purpose |
 | `TRUST_PROXY` | `false` | Set to `true` only behind a proxy that overwrites `X-Forwarded-For`, otherwise clients can spoof their rate-limit identity |
 | `ENABLE_HSTS` | `false` | Set to `true` when served over HTTPS |
@@ -118,6 +118,12 @@ pages and the static assets; everything is embedded into the binary with
 caching. The system lives in `web/static/njiralab.css`; Njira Vault adds only
 what a working interface needs in `web/static/vault.css`.
 
+The palette is light: white page, Deep Indigo `#0F1724` type, violet as the one
+brand accent. The signal colours are darkened from their display values so they
+stay readable on white — cyan `#0E7490` for technology, amber `#B45309` where
+progress or irreversibility has to be read (the raw `#F59E0B` is kept for
+fills). Every foreground/surface pair clears WCAG AA.
+
 The layout language is editorial rather than SaaS: sections are organised by a
 rail of small labels and hairline rules, not by stacking rounded containers.
 A card is used only where something genuinely is an interface object — the
@@ -125,6 +131,14 @@ Vault form is one, an "about" paragraph is not. Corners stay at 4px, the type
 scale is deliberately narrow so the hero is the only large thing on the page,
 and the philosophy statement is the single place the page changes voice, set
 in a system serif.
+
+### Brand assets
+
+`web/static/mark.svg`, `favicon.svg`, `favicon.ico` and the icon PNGs come from
+the supplied NjiraLabs brand pack and are used unmodified. The wordmark is set
+lowercase and two-tone in HTML (`njira` in ink, `labs` in violet) rather than as
+an image, so it stays crisp and selectable; the supplied horizontal lockup is
+not used in the navigation because its tagline is illegible at that size.
 
 ### Product imagery
 
@@ -153,4 +167,4 @@ category; the short root travels better than the full company name.
 
 This repository was previously **Greentropikal**, an infrastructure consultancy
 site with a secret-sharing tool attached. The git history is preserved
-unchanged; the rebrand to NjiraLab is a normal commit on top of it.
+unchanged; the rebrand to NjiraLabs is a normal commit on top of it.

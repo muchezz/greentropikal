@@ -116,8 +116,8 @@ func newSite(cfg Config) (*site, error) {
 	// Marketing pages are identical for every visitor, so render them once.
 	for name, meta := range map[string]struct{ title, desc, canonical string }{
 		"index.html": {
-			"NjiraLab — Building Technology for Human Progress",
-			"NjiraLab builds intelligent products and technology systems that help people learn, build, and go further.",
+			"NjiraLabs — Building Technology for Human Progress",
+			"NjiraLabs builds intelligent products and technology systems that help people learn, build, and go further.",
 			"/",
 		},
 		"vault.html": {

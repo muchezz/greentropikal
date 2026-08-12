@@ -16,7 +16,7 @@ body.vault {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(15, 13, 32, 0.92);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
 }
@@ -37,10 +37,11 @@ body.vault {
   gap: 0.6rem;
 }
 
-.lockup svg {
-  width: 21px;
-  height: 21px;
+.lockup__mark {
+  width: 22px;
+  height: 22px;
   flex: none;
+  border-radius: 5px;
 }
 
 .lockup__name {
@@ -125,7 +126,7 @@ body.vault {
 .card .field input:focus,
 .card .field textarea:focus,
 .card .field select:focus {
-  border-color: var(--lavender);
+  border-color: var(--accent);
 }
 
 .field textarea.secret-input {
@@ -219,7 +220,7 @@ body.vault {
 }
 
 .warn strong {
-  color: var(--amber);
+  color: var(--amber-text);
   font-weight: 600;
 }
 
@@ -348,7 +349,7 @@ body.vault {
 }
 
 .error-text {
-  color: var(--amber);
+  color: var(--amber-text);
 }
 
 @media (max-width: 640px) {

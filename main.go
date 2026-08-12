@@ -1,4 +1,4 @@
-// Command njiralab serves the NjiraLab website and the Vault secret-sharing
+// Command njiralab serves the NjiraLabs website and the Vault secret-sharing
 // product from a single binary. Pages and static assets are embedded, so the
 // container image only needs the executable.
 package main

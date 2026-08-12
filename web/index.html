@@ -7,17 +7,17 @@
 <meta name="description" content="{{ .Description }}">
 <link rel="canonical" href="{{ .Canonical }}">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#0F0D20">
+<meta name="theme-color" content="#FFFFFF">
 
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="NjiraLab">
+<meta property="og:site_name" content="NjiraLabs">
 <meta property="og:title" content="{{ .Title }}">
 <meta property="og:description" content="{{ .Description }}">
 <meta property="og:url" content="{{ .Canonical }}">
 <meta property="og:image" content="{{ .BaseURL }}/static/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="NjiraLab — Building technology for human progress.">
+<meta property="og:image:alt" content="NjiraLabs — Building technology for human progress.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ .Title }}">
 <meta name="twitter:description" content="{{ .Description }}">
@@ -25,6 +25,7 @@
 
 <link rel="icon" href="{{ asset "favicon.svg" }}" type="image/svg+xml">
 <link rel="alternate icon" href="{{ asset "favicon.png" }}" sizes="32x32">
+<link rel="mask-icon" href="{{ asset "favicon.svg" }}" color="#7C3AED">
 <link rel="apple-touch-icon" href="{{ asset "apple-touch-icon.png" }}">
 <link rel="stylesheet" href="{{ asset "njiralab.css" }}">
 <script src="{{ asset "njiralab.js" }}" defer></script>
@@ -34,12 +35,9 @@
 
 <header class="nav" id="nav">
   <div class="nav__inner">
-    <a class="brand" href="/" aria-label="NjiraLab home">
-      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <path d="M6 26V9.5L24 24V12" stroke="#7C3AED" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="24" cy="7" r="3" fill="#A78BFA"/>
-      </svg>
-      <span>NjiraLab</span>
+    <a class="brand" href="/" aria-label="NjiraLabs home">
+      <img class="brand__mark" src="{{ asset "mark.svg" }}" alt="" width="24" height="24">
+      <span class="brand__word">njira<em>labs</em></span>
     </a>
 
     <nav class="nav__menu" id="nav-menu" aria-label="Main">
@@ -81,9 +79,9 @@
   <section class="hero">
     <div class="wrap hero__grid">
       <div>
-        <span class="label">NjiraLab</span>
+        <span class="label">NjiraLabs</span>
         <h1 class="h-hero">Building technology for human progress.</h1>
-        <p class="lede">NjiraLab builds intelligent products and technology systems that help people learn, build, and go further.</p>
+        <p class="lede">NjiraLabs builds intelligent products and technology systems that help people learn, build, and go further.</p>
         <div class="hero__actions">
           <a class="btn btn--primary" href="#products">Explore our products</a>
           <a class="btn btn--ghost" href="#contact">Work with us</a>
@@ -267,8 +265,8 @@
       </div>
 
       <div class="reveal">
-        <h3 class="h-section">Why NjiraLab</h3>
-        <p class="statement">NjiraLab exists to build technology that creates useful paths forward — from better ways to learn, to better ways to build and operate modern systems.</p>
+        <h3 class="h-section">Why NjiraLabs</h3>
+        <p class="statement">NjiraLabs exists to build technology that creates useful paths forward — from better ways to learn, to better ways to build and operate modern systems.</p>
         <p class="prose">Njira means path. We started from engineering work on production infrastructure, and we build products on top of the same foundation.</p>
         <ul class="facts">
           <li><strong>Product development</strong><span>We design, build, and run our own products end to end.</span></li>
@@ -324,7 +322,7 @@
           <label for="cf-message">Message</label>
           <textarea id="cf-message" name="message" placeholder="What are you trying to build?" required></textarea>
         </div>
-        <button type="submit" class="btn btn--primary btn--wide" data-contact-email="{{ .ContactEmail }}">Work with NjiraLab</button>
+        <button type="submit" class="btn btn--primary btn--wide" data-contact-email="{{ .ContactEmail }}">Work with NjiraLabs</button>
         <p class="form-note">This opens your email client. You can also write to <a href="mailto:{{ .ContactEmail }}">{{ .ContactEmail }}</a> directly.</p>
       </form>
     </div>
@@ -336,11 +334,8 @@
     <div class="footer__grid">
       <div class="footer__brand">
         <a class="brand" href="/">
-          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
-            <path d="M6 26V9.5L24 24V12" stroke="#7C3AED" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="24" cy="7" r="3" fill="#A78BFA"/>
-          </svg>
-          <span>NjiraLab</span>
+          <img class="brand__mark" src="{{ asset "mark.svg" }}" alt="" width="24" height="24">
+          <span class="brand__word">njira<em>labs</em></span>
         </a>
         <p>Building technology for human progress.</p>
       </div>
@@ -369,7 +364,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <p>&copy; <span data-year>{{ .Year }}</span> NjiraLab</p>
+      <p>&copy; <span data-year>{{ .Year }}</span> NjiraLabs</p>
       <p>Building technology for human progress.</p>
     </div>
   </div>

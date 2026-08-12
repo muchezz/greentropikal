@@ -7,26 +7,35 @@
 
    Colour is semantic. Violet is the brand and the primary action. Cyan means
    technology and movement. Amber means progress, destination, and the point of
-   no return. None of them decorate large surfaces. */
+   no return. None of them decorate large surfaces, and the signal colours are
+   darkened from their display values so they stay readable on white. */
 
 :root {
-  --sunken: #0a0918;
-  --base: #0f0d20;
-  --surface: #17142f;
-  --elevated: #211c3d;
+  /* Foundation. Light by default: white page, near-black indigo type, and two
+     quiet steps above it for bands and hover. */
+  --base: #ffffff;
+  --surface: #f7f8fc;
+  --elevated: #eef0f8;
+  --sunken: #f7f8fc;
 
-  --violet: #7c3aed;
-  --violet-lift: #8b5cf6;
-  --lavender: #a78bfa;
-  --cyan: #22d3ee;
-  --amber: #f59e0b;
+  /* Brand */
+  --violet: #7c3aed; /* fills and primary action */
+  --violet-lift: #6d28d9; /* hover: darker on a light page */
+  --accent: #6d28d9; /* accent *text*: 7.1:1 on white */
 
-  --text: #f8fafc;
-  --text-2: #cbd5e1;
-  --text-3: #94a3b8;
+  /* Signals. Both are darkened from the display values so they stay legible
+     as text and hairlines on white; the raw amber is kept for fills only. */
+  --cyan: #0e7490; /* technology and movement */
+  --amber: #f59e0b; /* progress and destination — fills */
+  --amber-text: #b45309; /* the same signal where it has to be read */
 
-  --line: #262040;
-  --line-strong: #3b3363;
+  /* Type */
+  --text: #0f1724; /* Deep Indigo, from the brand palette */
+  --text-2: #475569;
+  --text-3: #64748b;
+
+  --line: #e6e8f0;
+  --line-strong: #cbd2e0;
 
   --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
@@ -107,7 +116,7 @@ code {
 }
 
 :focus-visible {
-  outline: 2px solid var(--lavender);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -262,8 +271,8 @@ code {
 }
 
 .btn--ghost:hover {
-  border-color: var(--lavender);
-  color: var(--lavender);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .btn--wide {
@@ -279,7 +288,7 @@ code {
   display: inline-flex;
   align-items: baseline;
   gap: 0.4rem;
-  color: var(--lavender);
+  color: var(--accent);
   font-weight: 500;
   font-size: 0.9375rem;
 }
@@ -307,7 +316,7 @@ code {
 }
 
 .nav.is-scrolled {
-  background: rgba(15, 13, 32, 0.9);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(12px);
   border-bottom-color: var(--line);
 }
@@ -330,10 +339,21 @@ code {
   letter-spacing: -0.02em;
 }
 
-.brand svg {
-  width: 22px;
-  height: 22px;
+.brand__word {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.brand__word em {
+  font-style: normal;
+  color: var(--violet);
+}
+
+.brand__mark {
+  width: 24px;
+  height: 24px;
   flex: none;
+  border-radius: 5px;
 }
 
 .nav__menu {
@@ -386,6 +406,7 @@ code {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--r);
+  box-shadow: 0 12px 28px -14px rgba(23, 20, 47, 0.28);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-4px);
@@ -541,7 +562,7 @@ code {
 }
 
 .index__row:hover .index__name {
-  color: var(--lavender);
+  color: var(--accent);
 }
 
 .index__desc {
@@ -578,7 +599,7 @@ code {
 
 .product__kicker {
   font-size: 0.9375rem;
-  color: var(--lavender);
+  color: var(--accent);
 }
 
 .product__lede {
@@ -619,7 +640,7 @@ code {
 
 /* Amber marks the last stage: the destination. */
 .stages li:last-child .stages__num {
-  color: var(--amber);
+  color: var(--amber-text);
 }
 
 .stages h4 {
@@ -834,7 +855,7 @@ code {
 }
 
 .contact__meta a:hover {
-  color: var(--lavender);
+  color: var(--accent);
 }
 
 .field {
@@ -877,7 +898,7 @@ code {
 .field textarea:focus,
 .field select:focus {
   outline: none;
-  border-bottom-color: var(--lavender);
+  border-bottom-color: var(--accent);
 }
 
 .field ::placeholder {

@@ -5,12 +5,17 @@ services:
       dockerfile: Dockerfile
     container_name: njiralab
     ports:
-      - "8080:8080"
+      # Host port is configurable so it can dodge whatever else is on 8080:
+      #   HOST_PORT=8081 docker compose up
+      # The container always listens on 8080; only the host side moves.
+      - "${HOST_PORT:-8080}:8080"
     environment:
       PORT: "8080"
       # Set this to the public origin in production — it is used for canonical
-      # URLs, the sitemap, and the links Vault hands back.
-      BASE_URL: "http://localhost:8080"
+      # URLs, the sitemap, and the links Vault hands back. It must match the
+      # host port above, or the links Vault generates will point at the wrong
+      # place.
+      BASE_URL: "http://localhost:${HOST_PORT:-8080}"
       REDIS_URL: "redis:6379"
       # Fill these in once the destinations exist.
       # STUDYZORA_URL: "https://…"
