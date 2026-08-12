@@ -8,7 +8,8 @@ body.vault {
   background: var(--sunken);
 }
 
-/* Header: the product name leads, the parent brand endorses. */
+/* Header: the product name leads; the parent brand sits opposite it as a
+   link rather than as an endorsement line, since "Njira" already carries it. */
 .vault-head {
   position: sticky;
   top: 0;
@@ -41,19 +42,9 @@ body.vault {
 }
 
 .lockup__name {
-  display: block;
   font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: -0.03em;
-  line-height: 1.15;
-}
-
-.lockup__by {
-  display: block;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-3);
 }
 
 .vault-head a.link {

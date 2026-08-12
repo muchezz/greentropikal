@@ -8,7 +8,7 @@
      no description or social metadata that could echo its contents. -->
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="referrer" content="no-referrer">
-<meta name="theme-color" content="#0B0A1B">
+<meta name="theme-color" content="#0F0D20">
 <link rel="icon" href="{{ asset "favicon.svg" }}" type="image/svg+xml">
 <link rel="alternate icon" href="{{ asset "favicon.png" }}" sizes="32x32">
 <link rel="stylesheet" href="{{ asset "njiralab.css" }}">
@@ -20,15 +20,12 @@
 
 <header class="vault-head">
   <div class="vault-head__inner">
-    <a class="lockup" href="/vault" aria-label="Vault by NjiraLab">
+    <a class="lockup" href="/vault" aria-label="Njira Vault">
       <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <path d="M6 26V9.5L24 24V12" stroke="#7C3AED" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
         <circle cx="24" cy="7" r="3" fill="#A78BFA"/>
       </svg>
-      <span>
-        <span class="lockup__name">Vault</span>
-        <span class="lockup__by">by NjiraLab</span>
-      </span>
+      <span class="lockup__name">Njira Vault</span>
     </a>
     <a class="link" href="/vault">Create a secret</a>
   </div>
@@ -61,12 +58,12 @@
 
   <div class="card">
     <h2>About this link</h2>
-    <p class="card__lede">Vault stores encrypted text for a limited time. The decryption key travels in the part of the link after the <code>#</code>, which your browser does not send to the server. Clear this page from your history when you are done with it.</p>
+    <p class="card__lede">Njira Vault stores encrypted text for a limited time. The decryption key travels in the part of the link after the <code>#</code>, which your browser does not send to the server. Clear this page from your history when you are done with it.</p>
   </div>
 </main>
 
 <footer class="vault-foot">
-  <p>Vault — a product by <a class="link" href="/">NjiraLab</a></p>
+  <p>Njira Vault — a product by <a class="link" href="/">NjiraLab</a></p>
   <p>&copy; <span data-year>{{ .Year }}</span> NjiraLab</p>
 </footer>
 </body>

@@ -117,12 +117,12 @@ func newSite(cfg Config) (*site, error) {
 			"/",
 		},
 		"vault.html": {
-			"Vault by NjiraLab — Secure secret sharing",
+			"Njira Vault — Secure secret sharing",
 			"Create and share sensitive information through temporary, controlled access. Encrypted storage, automatic expiry, and one-time links.",
 			"/vault",
 		},
 		"vault_view.html": {
-			"Vault by NjiraLab",
+			"Njira Vault",
 			"",
 			"",
 		},

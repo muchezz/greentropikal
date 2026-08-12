@@ -2,15 +2,15 @@
 
 Building technology for human progress.
 
-This repository holds the NjiraLab website and **Vault**, the company's secret-sharing
+This repository holds the NjiraLab website and **Njira Vault**, the company's secret-sharing
 product. Both are served by a single Go binary with no runtime dependencies other
 than Redis.
 
 ```
 NjiraLab
 ├── Products
-│   ├── StudyZora — AI-powered learning (presented here, built elsewhere)
-│   └── Vault     — secure secret sharing (built and served from this repo)
+│   ├── StudyZora    — AI-powered learning (presented here, built elsewhere)
+│   └── Njira Vault  — secure secret sharing (built and served from this repo)
 └── Technology
     ├── Cloud & infrastructure
     ├── Platform engineering
@@ -53,7 +53,7 @@ go run .
 | Variable | Default | Notes |
 | --- | --- | --- |
 | `PORT` | `8080` | |
-| `BASE_URL` | `http://localhost:8080` | Public origin. Used for canonical URLs, the sitemap, and Vault links. **Set this in production.** |
+| `BASE_URL` | `http://localhost:8080` | Public origin. Used for canonical URLs, the sitemap, and Njira Vault links. **Set this in production.** |
 | `REDIS_URL` | `localhost:6379` | Accepts `host:port` or a full `redis://` URL |
 | `REDIS_PASSWORD`, `REDIS_DB` | — | Used only with the `host:port` form |
 | `STUDYZORA_URL` | unset | When unset, the StudyZora call to action points at the contact section instead of inventing a destination |
@@ -62,7 +62,7 @@ go run .
 | `TRUST_PROXY` | `false` | Set to `true` only behind a proxy that overwrites `X-Forwarded-For`, otherwise clients can spoof their rate-limit identity |
 | `ENABLE_HSTS` | `false` | Set to `true` when served over HTTPS |
 
-## How Vault handles secrets
+## How Njira Vault handles secrets
 
 Each secret is encrypted with **AES-256-GCM** under a key generated for that one
 secret. The key is returned to the creator inside the link fragment (`/s/<id>#<key>`)
@@ -80,7 +80,7 @@ Expiry is enforced by Redis TTL rather than by application code, and ranges from
 5 minutes to 30 days. The compose file runs Redis with persistence disabled, so
 secrets are never written to a disk volume.
 
-### What Vault does not do
+### What Njira Vault does not do
 
 Stated plainly, because the interface states it too:
 
@@ -115,8 +115,15 @@ Stated plainly, because the interface states it too:
 No framework, no build step, no webfonts. `web/` holds three `html/template`
 pages and the static assets; everything is embedded into the binary with
 `go:embed`, fingerprinted at startup, and served with immutable caching. The
-brand system lives in `web/static/njiralab.css`; Vault's darker surface treatment
-is layered on top in `web/static/vault.css`.
+brand system lives in `web/static/njiralab.css`; Njira Vault's darker surface
+treatment is layered on top in `web/static/vault.css`.
+
+## Naming
+
+**StudyZora** keeps its own name — it is distinctive, it names its category, and
+it is a separate product with its own identity. **Njira Vault** takes the parent
+prefix because "Vault" alone collides with a well-known product in the same
+category; the short root travels better than the full company name.
 
 ## Project history
 
