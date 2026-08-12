@@ -1,61 +1,66 @@
-/* NjiraLab design system
-   ----------------------
-   The organising idea is editorial, not SaaS. Structure comes from a rail of
-   small labels, hairline rules and alignment — not from stacking rounded
-   containers. A card is used only where something really is an interface
-   object; everything else is set with type and space.
+/* NjiraLabs design system
+   -----------------------
+   Light-first. White page, Inter, restrained rounding, subtle borders instead
+   of heavy shadow.
 
-   Colour is semantic. Emerald is the brand and the primary action. Teal means
-   technology and movement. Amber means progress, destination, and the point of
-   no return. None of them decorate large surfaces, and every colour that has to
-   be read is darkened from its display value so it clears AA on white. */
+   Colour has semantic ownership and the three brands never blend:
+     NjiraLabs   green   — company chrome, navigation, primary calls to action
+     StudyZora   purple  — only inside the StudyZora product
+     Njira Vault orange  — only inside the Njira Vault product
+   Product colour is scoped by .product--studyzora / .product--vault, which
+   rebind --accent, so nothing inside names purple or orange directly and the
+   colours cannot leak into the rest of the page. */
+
+/* Inter, self-hosted: one variable file covering 100–900 across latin, so the
+   page still makes no third-party requests. */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/static/inter.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 :root {
-  /* Foundation. Light by default: white page, near-black indigo type, and two
-     quiet steps above it for bands and hover. */
-  --base: #ffffff;
-  --surface: #f6faf8;
-  --elevated: #ecf5f1;
-  --sunken: #f6faf8;
+  --white: #ffffff;
+  --subtle: #f8fafc;
+  --border: #e5e7eb;
 
-  /* Brand */
-  --brand: #047857; /* emerald: fills and primary action, 5.5:1 with white */
-  --brand-lift: #065f46; /* hover: one step darker */
-  --accent: #047857; /* accent *text*: 5.5:1 on white */
-  /* Display-only greens. Bright emerald is 2.5:1 on white, so it appears in
-     gradients and dots and never carries text. */
-  --green-bright: #10b981;
-  --green-soft: #34d399;
+  --green: #16a34a; /* NjiraLabs primary */
+  --green-bright: #22c55e; /* display green: gradients, dots, the mark */
+  --green-dark: #15803d; /* hover */
+  --green-tint: #f0fdf4;
 
-  /* Signals. Darkened from their display values so they stay legible as text
-     and hairlines on white; the raw amber is kept for fills only. */
-  --cyan: #0f766e; /* teal — technology and movement */
-  --amber: #f59e0b; /* progress and destination — fills */
-  --amber-text: #b45309; /* the same signal where it has to be read */
+  --purple: #7c3aed; /* StudyZora */
+  --purple-dark: #6d28d9;
+  --purple-tint: #f5f3ff;
 
-  /* Type */
-  --text: #0f1724; /* Deep Indigo, from the brand palette */
-  --text-2: #475569;
-  --text-3: #64748b;
+  --orange: #f59e0b; /* Njira Vault */
+  --orange-dark: #b45309; /* the same signal where it has to be read */
+  --orange-tint: #fffbeb;
 
-  --line: #e3ebe7;
-  --line-strong: #c6d6ce;
+  --ink: #0f172a;
+  --body: #64748b;
 
-  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+  /* Per-product accent. Set once on a product wrapper; everything accented
+     inside reads from here rather than naming a colour. */
+  --accent: var(--green);
+  --accent-dark: var(--green-dark);
+  --accent-tint: var(--green-tint);
+
+  --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
-  /* One deliberate serif, used only for the philosophy statement. It is the
-     single place the page changes voice. */
-  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia,
-    "Times New Roman", serif;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
     "Liberation Mono", monospace;
 
-  --wrap: 1120px;
-  --rail: 168px;
-  --gap: clamp(2rem, 4vw, 3.5rem);
-  --nav-h: 64px;
-  /* Corners stay tight. Large radii are what make a page read as template. */
-  --r: 4px;
+  --wrap: 1280px;
+  --nav-h: 72px;
+  --r-card: 16px;
+  --r-btn: 10px;
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
   --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 
@@ -68,16 +73,16 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--nav-h) + 2rem);
+  scroll-padding-top: calc(var(--nav-h) + 1.5rem);
 }
 
 body {
   margin: 0;
-  background: var(--base);
-  color: var(--text);
+  background: var(--white);
+  color: var(--ink);
   font-family: var(--sans);
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -87,9 +92,7 @@ h2,
 h3,
 h4 {
   margin: 0;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.12;
+  line-height: 1.15;
 }
 
 p {
@@ -122,11 +125,11 @@ code {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .wrap {
-  width: min(var(--wrap), 100% - 3rem);
+  width: min(var(--wrap), 100% - 4rem);
   margin-inline: auto;
 }
 
@@ -136,147 +139,152 @@ code {
   top: 0;
   z-index: 100;
   padding: 0.75rem 1.25rem;
-  background: var(--brand);
+  background: var(--green);
   color: #fff;
+  border-radius: 0 0 var(--r-btn) 0;
 }
 .skip:focus {
   left: 0;
 }
 
-/* ---------- Type scale ----------
-   Deliberately narrow. The hero is the only large thing on the page; section
-   headings sit well below it so the page has a hierarchy rather than a series
-   of competing announcements. */
+/* ---------- Type ---------- */
 
-.label {
-  font-size: 0.75rem;
+.eyebrow {
+  font-size: 0.875rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-3);
+  color: var(--accent);
 }
 
-.h-hero {
-  font-size: clamp(2.1rem, 4.4vw, 3.25rem);
-  letter-spacing: -0.03em;
-  line-height: 1.08;
+.eyebrow--dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
-.h-section {
-  font-size: clamp(1.45rem, 2.3vw, 1.85rem);
+/* The Njira waypoint, at its smallest scale. */
+.eyebrow--dot::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
 }
 
-.h-product {
-  font-size: clamp(1.75rem, 3vw, 2.3rem);
-  letter-spacing: -0.03em;
+.h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.14;
 }
 
-.lede {
-  font-size: 1.125rem;
-  line-height: 1.55;
-  color: var(--text-2);
+.h1 em {
+  font-style: normal;
+  color: var(--green);
 }
 
-.prose {
-  color: var(--text-2);
-  max-width: min(62ch, 100%);
+.h2 {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-.prose + .prose {
-  margin-top: 1.1rem;
+.h3 {
+  font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-.muted {
-  color: var(--text-3);
+.h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
-/* ---------- Section rhythm ----------
-   Sections are separated by a hairline and, occasionally, by a full-bleed
-   change of surface. No section is a box. */
+.body {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--body);
+}
 
 .section {
   padding-block: clamp(4rem, 7vw, 6rem);
-  border-top: 1px solid var(--line);
 }
 
-.section--band {
-  background: var(--surface);
-  border-top: 0;
+.section--subtle {
+  background: var(--subtle);
+  border-block: 1px solid var(--border);
 }
 
-.section--flush {
-  border-top: 0;
+.section__head {
+  max-width: min(48ch, 100%);
+  margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
 }
 
-/* The rail: a small label in a narrow left column with a hairline running
-   beside it, and a node where the section begins. Progression down the page,
-   drawn structurally rather than illustrated. */
-.rail {
-  display: grid;
-  grid-template-columns: var(--rail) minmax(0, 1fr);
-  gap: var(--gap);
+.section__head .h2 {
+  margin-top: 0.9rem;
 }
 
-.rail__side {
-  position: relative;
-  padding-left: 1.15rem;
-  border-left: 1px solid var(--line);
+.section__head .body {
+  margin-top: 1rem;
 }
 
-.rail__side::before {
-  content: "";
-  position: absolute;
-  left: -3.5px;
-  top: 0.45em;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--brand);
-}
-
-.rail__note {
-  margin-top: 0.75rem;
-  font-size: 0.85rem;
-  color: var(--text-3);
-  max-width: 22ch;
-}
-
-/* ---------- Buttons and links ---------- */
+/* ---------- Buttons ---------- */
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.7rem 1.25rem;
+  padding: 0.8rem 1.4rem;
   background: transparent;
   border: 1px solid transparent;
-  border-radius: var(--r);
-  color: var(--text);
+  border-radius: var(--r-btn);
+  color: var(--ink);
   font: inherit;
   font-size: 0.9375rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.18s var(--ease), border-color 0.18s var(--ease),
     color 0.18s var(--ease);
 }
 
-.btn--primary {
-  background: var(--brand);
+.btn__arrow {
+  transition: transform 0.18s var(--ease);
+}
+
+.btn:hover .btn__arrow,
+.link:hover .btn__arrow {
+  transform: translateX(3px);
+}
+
+/* Solid and outline both take whatever accent their section owns. */
+.btn--solid {
+  background: var(--accent);
   color: #fff;
 }
 
-.btn--primary:hover {
-  background: var(--brand-lift);
+.btn--solid:hover {
+  background: var(--accent-dark);
 }
 
-.btn--ghost {
-  border-color: var(--line-strong);
-}
-
-.btn--ghost:hover {
+.btn--outline {
+  background: var(--white);
   border-color: var(--accent);
   color: var(--accent);
+}
+
+.btn--outline:hover {
+  background: var(--accent-tint);
+}
+
+.btn--quiet {
+  border-color: var(--border);
+}
+
+.btn--quiet:hover {
+  border-color: var(--ink);
 }
 
 .btn--wide {
@@ -290,39 +298,24 @@ code {
 
 .link {
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
   gap: 0.4rem;
   color: var(--accent);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.9375rem;
-}
-
-.link::after {
-  content: "→";
-  transition: transform 0.18s var(--ease);
-}
-
-.link:hover::after {
-  transform: translateX(3px);
 }
 
 /* ---------- Navigation ---------- */
 
 .nav {
-  position: fixed;
-  inset: 0 0 auto 0;
+  position: sticky;
+  top: 0;
   z-index: 50;
   height: var(--nav-h);
   display: flex;
   align-items: center;
-  border-bottom: 1px solid transparent;
-  transition: background-color 0.25s var(--ease), border-color 0.25s var(--ease);
-}
-
-.nav.is-scrolled {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(12px);
-  border-bottom-color: var(--line);
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
 }
 
 .nav__inner {
@@ -330,7 +323,7 @@ code {
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  width: min(var(--wrap), 100% - 3rem);
+  width: min(var(--wrap), 100% - 4rem);
   margin-inline: auto;
 }
 
@@ -338,63 +331,61 @@ code {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  font-weight: 600;
-  font-size: 1rem;
-  letter-spacing: -0.02em;
 }
 
+.brand__mark {
+  width: 30px;
+  height: 30px;
+  flex: none;
+}
+
+/* The wordmark is set in Inter rather than used as an image: the supplied
+   lockup draws its text with an SVG font tag, which falls back unpredictably
+   on machines without Inter installed. */
 .brand__word {
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-size: 1.375rem;
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  color: var(--ink);
 }
 
 .brand__word em {
   font-style: normal;
-  color: var(--brand);
-}
-
-.brand__mark {
-  width: 24px;
-  height: 24px;
-  flex: none;
-  border-radius: 5px;
+  color: var(--green);
 }
 
 .nav__menu {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
 }
 
 .nav__link {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
-  padding: 0.4rem 0.7rem;
+  gap: 0.35rem;
+  padding: 0.5rem 0.9rem;
   background: none;
   border: 0;
-  border-radius: var(--r);
+  border-radius: var(--r-btn);
   font: inherit;
   font-size: 0.9375rem;
-  color: var(--text-3);
+  font-weight: 500;
+  color: var(--ink);
   cursor: pointer;
   transition: color 0.18s var(--ease);
 }
 
 .nav__link:hover,
 .nav__link[aria-expanded="true"] {
-  color: var(--text);
+  color: var(--green);
 }
 
 .nav__actions {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-}
-
-.nav__cta {
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
+  margin-left: 0.75rem;
 }
 
 .dropdown {
@@ -403,14 +394,14 @@ code {
 
 .dropdown__panel {
   position: absolute;
-  top: calc(100% + 0.5rem);
+  top: calc(100% + 0.75rem);
   left: 0;
-  width: 288px;
-  padding: 0.35rem;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  box-shadow: 0 12px 28px -14px rgba(23, 20, 47, 0.28);
+  width: 300px;
+  padding: 0.5rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-4px);
@@ -425,14 +416,22 @@ code {
 }
 
 .dropdown__item {
-  display: block;
-  padding: 0.6rem 0.7rem;
-  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0.75rem;
+  border-radius: 10px;
   transition: background-color 0.18s var(--ease);
 }
 
 .dropdown__item:hover {
-  background: var(--elevated);
+  background: var(--subtle);
+}
+
+.dropdown__item img {
+  width: 26px;
+  height: 26px;
+  flex: none;
 }
 
 .dropdown__item strong {
@@ -443,18 +442,18 @@ code {
 
 .dropdown__item span {
   font-size: 0.83rem;
-  color: var(--text-3);
+  color: var(--body);
 }
 
 .nav__toggle {
   display: none;
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   padding: 0;
   background: none;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--r);
-  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--r-btn);
+  color: var(--ink);
   cursor: pointer;
 }
 
@@ -462,8 +461,9 @@ code {
 .nav__toggle span::before,
 .nav__toggle span::after {
   display: block;
-  width: 15px;
-  height: 1.5px;
+  width: 16px;
+  height: 1.75px;
+  border-radius: 2px;
   background: currentColor;
   transition: transform 0.22s var(--ease), opacity 0.18s var(--ease);
 }
@@ -497,56 +497,42 @@ code {
   transform: translateY(-5px) rotate(-45deg);
 }
 
-/* ---------- Hero ----------
-   No illustration, no gradient field. The right column carries an index of the
-   page, which is real information and doubles as navigation. */
+/* ---------- Hero ---------- */
 
 .hero {
-  padding-top: calc(var(--nav-h) + clamp(3.5rem, 8vw, 6rem));
-  padding-bottom: clamp(3rem, 6vw, 4.5rem);
+  padding-block: clamp(3.5rem, 6vw, 5rem) clamp(3rem, 5vw, 4.5rem);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
 }
 
 .hero__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
-  gap: clamp(2.5rem, 6vw, 4.5rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
+  gap: clamp(2.5rem, 5vw, 4rem);
   align-items: center;
 }
 
-.hero .label {
-  display: block;
-  margin-bottom: 1.5rem;
+.hero .h1 {
+  margin-top: 1.25rem;
+  max-width: 13ch;
 }
 
-.hero h1 {
-  max-width: min(15ch, 100%);
-}
-
-/* The half of the headline the company is actually about. */
-.hero h1 em {
-  font-style: normal;
-  color: var(--accent);
-}
-
-.hero .lede {
+.hero .body {
   margin-top: 1.5rem;
-  max-width: min(48ch, 100%);
+  max-width: 46ch;
+  font-size: 1.125rem;
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.875rem;
   margin-top: 2.25rem;
 }
 
-/* The journey: one gradient path with its stages named beneath it. The labels
-   are what make it information rather than ornament. */
-.journey {
-  position: relative;
-}
-
-.journey__path {
+/* The path: Learn → Build → Go further. Naming the stages is what makes it
+   information about the company rather than ornament. */
+.journey__svg {
   width: 100%;
   height: auto;
 }
@@ -554,446 +540,406 @@ code {
 .journey__stages {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.75rem;
-  margin-top: 0.5rem;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
-.journey__stages li {
-  display: grid;
-  gap: 0.15rem;
-  font-size: 0.85rem;
-  color: var(--text-3);
+.journey__stage {
   text-align: center;
 }
 
-.journey__stages strong {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text);
-}
-
-.journey__dot {
-  position: relative;
-  width: 9px;
-  height: 9px;
-  margin: 1.5rem auto 0.5rem;
-  border-radius: 50%;
-  background: var(--green-soft);
-}
-
-/* A hairline back up to the path, so the labels read as points on it. */
-.journey__dot::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 100%;
-  width: 1px;
-  height: 1.15rem;
-  background: linear-gradient(to bottom, transparent, var(--line-strong));
-}
-
-/* Amber only at the destination. */
-.journey__dot--end {
-  background: var(--amber);
-}
-
-/* Page index */
-.index-strip {
-  padding-block: 0 clamp(2.5rem, 5vw, 3.5rem);
-}
-
-.index {
-  border-top: 1px solid var(--line);
-}
-
-.index__row {
+.journey__icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 0.75rem;
   display: grid;
-  grid-template-columns: 2.5rem minmax(0, 1fr) auto;
-  gap: 1rem;
-  align-items: baseline;
-  padding: 0.95rem 0;
-  border-bottom: 1px solid var(--line);
-  transition: border-color 0.18s var(--ease);
+  place-items: center;
+  border-radius: 50%;
+  background: var(--green-tint);
+  color: var(--green);
+  border: 1px solid var(--border);
 }
 
-.index__row:hover {
-  border-bottom-color: var(--line-strong);
+/* Build is the company's own middle step, so it is solid green. */
+.journey__stage:nth-child(2) .journey__icon {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
 }
 
-.index__num {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  color: var(--text-3);
+/* Arrival: the one place orange appears outside the Vault product. */
+.journey__stage:nth-child(3) .journey__icon {
+  background: var(--orange-tint);
+  border-color: #fde68a;
+  color: var(--orange-dark);
 }
 
-.index__name {
+.journey__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.journey__stage strong {
+  display: block;
   font-size: 0.9375rem;
-  font-weight: 600;
-  transition: color 0.18s var(--ease);
+  font-weight: 700;
 }
 
-.index__row:hover .index__name {
-  color: var(--accent);
+.journey__stage span {
+  font-size: 0.875rem;
+  color: var(--body);
 }
 
-.index__desc {
-  font-size: 0.83rem;
-  color: var(--text-3);
-  text-align: right;
-}
+/* ---------- Products ---------- */
 
-/* ---------- Products ----------
-   The two products are laid out differently on purpose. StudyZora is a wide
-   typographic block; Njira Vault leads with a screenshot of the running
-   product. Neither sits inside a card. */
+.products__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.75rem;
+  align-items: start;
+}
 
 .product {
-  padding-block: clamp(3rem, 6vw, 4.5rem);
-}
-
-.product + .product {
-  border-top: 1px solid var(--line);
-}
-
-.product__head {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.5rem 1.25rem;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  background: var(--white);
+  overflow: hidden;
+}
+
+.product--studyzora {
+  --accent: var(--purple);
+  --accent-dark: var(--purple-dark);
+  --accent-tint: var(--purple-tint);
+}
+
+.product--vault {
+  --accent: var(--orange);
+  --accent-dark: var(--orange-dark);
+  --accent-tint: var(--orange-tint);
+}
+
+.product__body {
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+  background: var(--accent-tint);
+  border-bottom: 1px solid var(--border);
 }
 
 .product__num {
   font-family: var(--mono);
-  font-size: 0.78rem;
-  color: var(--text-3);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.product__name {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.1rem;
+}
+
+.product__name img {
+  width: 40px;
+  height: 40px;
+  flex: none;
 }
 
 .product__kicker {
-  font-size: 0.9375rem;
-  color: var(--accent);
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent-dark);
 }
 
-.product__lede {
-  margin-top: 1.5rem;
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
-  line-height: 1.4;
-  letter-spacing: -0.015em;
-  max-width: min(30ch, 100%);
-  text-wrap: balance;
+.product__desc {
+  margin-top: 1.1rem;
+  max-width: 34ch;
+  color: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
 }
 
 .product__cta {
-  margin-top: 2rem;
-}
-
-/* StudyZora: three stages as columns divided by rules, not boxes. */
-.stages {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: clamp(2.5rem, 5vw, 3.5rem);
-  border-top: 1px solid var(--line);
-}
-
-.stages li {
-  padding: 1.5rem 1.75rem 0 0;
-}
-
-.stages li + li {
-  padding-left: 1.75rem;
-  border-left: 1px solid var(--line);
-}
-
-.stages__num {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  color: var(--text-3);
-}
-
-/* Amber marks the last stage: the destination. */
-.stages li:last-child .stages__num {
-  color: var(--amber-text);
-}
-
-.stages h4 {
-  margin-top: 0.6rem;
-  font-size: 1rem;
-}
-
-.stages p {
-  margin-top: 0.4rem;
-  font-size: 0.9rem;
-  color: var(--text-3);
-}
-
-.stages__pending {
-  grid-column: 1 / -1;
-  padding: 1.5rem 0 0;
-  font-size: 0.85rem;
-  color: var(--text-3);
-}
-
-/* Njira Vault: photographs of the running product. The captured card carries
-   its own border, so no frame is added here — a second one would read as a
-   card inside a card. */
-.shot {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* A staircase rather than a two-up grid: the primary shot runs full width so
-   the interface is actually readable, and the detail steps in below it. */
-.shots {
-  margin-top: clamp(2.5rem, 5vw, 3.5rem);
-}
-
-/* The product breaks out across the rail gutter so the interface gets real
-   space instead of being squeezed into the text column. */
-@media (min-width: 1001px) {
-  .shots--wide {
-    margin-left: calc(-1 * (var(--rail) + var(--gap)));
-  }
-}
-
-/* Offsetting the second shot makes the pair a composition rather than a
-   two-up grid. */
-.shots figure,
-.shots picture {
-  display: block;
-  margin: 0;
-}
-
-.shots figure:last-child {
-  width: min(66%, 660px);
-  margin-top: 1.5rem;
-  margin-left: auto;
-}
-
-.shots figcaption {
-  margin-top: 0.7rem;
-  font-size: 0.8rem;
-  color: var(--text-3);
-}
-
-.product__points {
   margin-top: 1.75rem;
 }
 
-.product__points li {
-  padding: 0.7rem 0;
-  border-top: 1px solid var(--line);
-  font-size: 0.9rem;
-  color: var(--text-2);
+/* The proof: the running interface. */
+.product__media {
+  flex: 1;
+  padding: 1.25rem;
+  background: var(--subtle);
 }
 
-.h-section__sub {
-  margin-top: 0.9rem;
-  margin-bottom: 2.5rem;
+.product__shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
 }
 
-/* A short opening statement, set larger than body copy but well below a
-   heading — the middle step the old scale was missing. */
-.statement {
-  margin-top: 1.25rem;
-  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
-  line-height: 1.45;
-  letter-spacing: -0.012em;
-  color: var(--text);
-  max-width: min(38ch, 100%);
+.product__caption {
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--body);
 }
 
-.statement + .prose {
-  margin-top: 1.5rem;
+/* Where no screenshot exists the stages are set as type, rather than mocked up
+   as an interface we do not have. */
+.stages {
+  display: grid;
+  gap: 0.75rem;
 }
 
-.contact__title {
-  margin-top: 1.1rem;
-  margin-bottom: 0.9rem;
+.stages li {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  padding: 0.9rem 1rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
 }
 
-/* Four principles closing the products section. Icon and text on a rule — a
-   row, not four boxes. */
+.stages__num {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--accent-tint);
+  color: var(--accent-dark);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.stages li:last-child .stages__num {
+  background: var(--accent);
+  color: #fff;
+}
+
+.stages strong {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.stages span {
+  font-size: 0.875rem;
+  color: var(--body);
+}
+
+/* ---------- Values ---------- */
+
 .values {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--gap);
-  margin-top: clamp(3rem, 6vw, 4.5rem);
-  padding-top: 2rem;
-  border-top: 1px solid var(--line);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  margin-top: clamp(3rem, 5vw, 4rem);
+  padding-top: clamp(2.5rem, 4vw, 3.5rem);
+  border-top: 1px solid var(--border);
 }
 
-.values li {
+.values li + li {
+  padding-left: clamp(1.5rem, 3vw, 2.5rem);
+  border-left: 1px solid var(--border);
+}
+
+.values__icon {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 1rem;
   display: grid;
-  gap: 0.9rem;
-  font-size: 0.875rem;
-  color: var(--text-3);
+  place-items: center;
+  border-radius: 12px;
+  background: var(--green-tint);
+  color: var(--green);
 }
 
-.values svg {
-  width: 22px;
-  height: 22px;
-  color: var(--accent);
+.values__icon svg {
+  width: 20px;
+  height: 20px;
 }
 
 .values strong {
   display: block;
-  margin-bottom: 0.3rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text);
-}
-
-/* ---------- Technology ----------
-   A definition list under one heading. Not a service catalogue. */
-
-.capabilities {
-  border-top: 1px solid var(--line);
-}
-
-.capabilities li {
-  display: grid;
-  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
-  gap: var(--gap);
-  padding: 1.15rem 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.capabilities h3 {
+  margin-bottom: 0.4rem;
   font-size: 1rem;
   font-weight: 600;
 }
 
-.capabilities p {
+.values p {
   font-size: 0.9375rem;
-  color: var(--text-3);
+  line-height: 1.55;
+  color: var(--body);
 }
 
-/* Cyan marks technology. One small rule per row, nothing more. */
-.capabilities h3::before {
-  content: "";
-  display: inline-block;
-  width: 14px;
-  height: 1px;
-  margin-right: 0.7rem;
-  vertical-align: middle;
-  background: var(--cyan);
+/* ---------- Technology ---------- */
+
+.capabilities {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(228px, 1fr));
+  gap: 1.25rem;
+}
+
+.capability {
+  padding: 1.5rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+}
+
+.capability__icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 1rem;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--green-tint);
+  color: var(--green);
+}
+
+.capability__icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.capability h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.capability p {
+  margin-top: 0.45rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--body);
 }
 
 /* ---------- Philosophy ---------- */
 
 .philosophy {
-  padding-block: clamp(5rem, 10vw, 8rem);
+  text-align: center;
 }
 
-.philosophy__inner {
-  margin-left: clamp(0px, 12vw, 168px);
+.philosophy .h2 {
+  max-width: 20ch;
+  margin-inline: auto;
 }
 
-.philosophy h2 {
-  max-width: min(19ch, 100%);
-  font-family: var(--serif);
-  font-size: clamp(1.85rem, 3.6vw, 2.75rem);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-}
-
-.philosophy p {
-  max-width: min(46ch, 100%);
-  margin-top: 1.75rem;
-  color: var(--text-2);
-  font-size: 1.0625rem;
+.philosophy .body {
+  max-width: 52ch;
+  margin: 1.25rem auto 0;
+  font-size: 1.125rem;
 }
 
 /* ---------- About ---------- */
 
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.about .body + .body {
+  margin-top: 1.25rem;
+}
+
 .facts {
-  margin-top: 2.5rem;
-  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  overflow: hidden;
 }
 
 .facts li {
   display: grid;
-  grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
-  gap: 1.5rem;
-  padding: 0.9rem 0;
-  border-bottom: 1px solid var(--line);
+  grid-template-columns: minmax(0, 11rem) minmax(0, 1fr);
+  gap: 1.25rem;
+  padding: 1.1rem 1.35rem;
+  background: var(--white);
   font-size: 0.9375rem;
-  color: var(--text-3);
+  color: var(--body);
 }
 
 .facts strong {
-  color: var(--text);
+  color: var(--ink);
   font-weight: 600;
 }
 
-/* ---------- Contact ----------
-   Underlined fields rather than filled boxes: fewer containers, and it reads
-   as a form on a page instead of a widget dropped onto one. */
+/* ---------- Contact ---------- */
 
-.contact__grid {
+.contact {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(2.5rem, 6vw, 5rem);
+  gap: clamp(2.5rem, 5vw, 4rem);
   align-items: start;
+  padding: clamp(2rem, 4vw, 3rem);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow);
 }
 
 .contact__meta {
-  margin-top: 2.5rem;
   display: grid;
   gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .contact__meta dt {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-3);
+  color: var(--green);
 }
 
 .contact__meta dd {
-  margin: 0.3rem 0 0;
-  color: var(--text-2);
+  margin: 0.35rem 0 0;
+  color: var(--body);
 }
 
 .contact__meta a:hover {
-  color: var(--accent);
+  color: var(--green);
 }
 
 .field {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.1rem;
 }
 
 .field label {
   display: block;
   margin-bottom: 0.4rem;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   font-weight: 500;
-  color: var(--text-3);
+  color: var(--ink);
 }
 
 .field input,
 .field textarea,
 .field select {
   width: 100%;
-  padding: 0.5rem 0;
-  background: none;
-  border: 0;
-  border-bottom: 1px solid var(--line-strong);
-  border-radius: 0;
-  color: var(--text);
+  padding: 0.7rem 0.9rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-btn);
+  color: var(--ink);
   font: inherit;
-  font-size: 1rem;
+  font-size: 0.9375rem;
   transition: border-color 0.18s var(--ease);
 }
 
-.field select {
-  padding-right: 1rem;
-}
-
 .field textarea {
-  min-height: 5.5rem;
+  min-height: 6rem;
   resize: vertical;
 }
 
@@ -1001,76 +947,75 @@ code {
 .field textarea:focus,
 .field select:focus {
   outline: none;
-  border-bottom-color: var(--accent);
+  border-color: var(--green);
 }
 
 .field ::placeholder {
-  color: var(--text-3);
+  color: var(--body);
 }
 
 .form-note {
-  margin-top: 1rem;
-  font-size: 0.83rem;
-  color: var(--text-3);
+  margin-top: 0.9rem;
+  font-size: 0.8125rem;
+  color: var(--body);
 }
 
 /* ---------- Footer ---------- */
 
 .footer {
-  border-top: 1px solid var(--line);
   padding-block: clamp(3rem, 5vw, 4rem) 2rem;
+  background: var(--subtle);
+  border-top: 1px solid var(--border);
 }
 
 .footer__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.7fr) repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
   gap: 2.5rem;
 }
 
 .footer__brand p {
-  max-width: 28ch;
-  margin-top: 0.9rem;
-  font-size: 0.9rem;
-  color: var(--text-3);
+  max-width: 30ch;
+  margin-top: 1rem;
+  font-size: 0.9375rem;
+  color: var(--body);
 }
 
 .footer h3 {
-  margin-bottom: 0.9rem;
-  font-size: 0.72rem;
+  margin-bottom: 1rem;
+  font-size: 0.8125rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-3);
+  color: var(--ink);
 }
 
 .footer li + li {
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
 }
 
 .footer a {
-  font-size: 0.9rem;
-  color: var(--text-2);
+  font-size: 0.9375rem;
+  color: var(--body);
 }
 
 .footer a:hover {
-  color: var(--text);
+  color: var(--green);
 }
 
 .footer__bottom {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 0.75rem;
+  gap: 1rem;
   margin-top: clamp(2.5rem, 4vw, 3.5rem);
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
-  font-size: 0.83rem;
-  color: var(--text-3);
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.875rem;
+  color: var(--body);
 }
 
-/* ---------- Motion ----------
-   Scroll reveal is CSS-only and purely additive, so nothing is ever hidden
-   waiting on JavaScript. */
+/* ---------- Motion ---------- */
 
 @supports (animation-timeline: view()) {
   @media screen and (prefers-reduced-motion: no-preference) {
@@ -1085,11 +1030,23 @@ code {
 @keyframes reveal-in {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+.draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.6s var(--ease) 0.1s forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
   }
 }
 
@@ -1103,32 +1060,22 @@ code {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+  .draw {
+    stroke-dashoffset: 0;
+  }
 }
 
 /* ---------- Responsive ---------- */
 
-@media (max-width: 1000px) {
-  .rail {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.75rem;
-  }
-
-  .rail__side {
-    padding-left: 0;
-    border-left: 0;
-  }
-
-  .rail__side::before {
-    display: none;
-  }
-
-  .rail__note {
-    max-width: min(46ch, 100%);
-  }
-
+@media (max-width: 1080px) {
   .hero__grid,
-  .contact__grid {
+  .about,
+  .contact {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero .h1 {
+    max-width: 16ch;
   }
 
   .values {
@@ -1136,19 +1083,14 @@ code {
     gap: 2rem;
   }
 
-  .capabilities li,
-  .facts li {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0.35rem;
+  .values li + li {
+    padding-left: 0;
+    border-left: 0;
   }
 
-  .shots figure:last-child {
-    width: 100%;
-    margin-left: 0;
-  }
-
-  .philosophy__inner {
-    margin-left: 0;
+  .values li:nth-child(n + 3) {
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
   }
 
   .footer__grid {
@@ -1157,6 +1099,17 @@ code {
 
   .footer__brand {
     grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 900px) {
+  .products__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .facts li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.3rem;
   }
 }
 
@@ -1174,8 +1127,8 @@ code {
     gap: 0;
     overflow-y: auto;
     overscroll-behavior: contain;
-    padding: 1rem 1.5rem 2rem;
-    background: var(--base);
+    padding: 1.25rem 1.5rem 2rem;
+    background: var(--white);
     transform: translateY(-10px);
     opacity: 0;
     visibility: hidden;
@@ -1190,21 +1143,21 @@ code {
   }
 
   .nav__link {
-    padding: 0.85rem 0;
-    font-size: 1.05rem;
-    color: var(--text);
-    border-bottom: 1px solid var(--line);
+    padding: 0.9rem 0;
+    font-size: 1.0625rem;
+    border-bottom: 1px solid var(--border);
     border-radius: 0;
   }
 
   .dropdown > .nav__link {
     pointer-events: none;
-    font-size: 0.72rem;
-    letter-spacing: 0.16em;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--text-3);
+    color: var(--body);
     border-bottom: 0;
-    padding-bottom: 0.25rem;
+    padding-bottom: 0.35rem;
   }
 
   .dropdown > .nav__link svg {
@@ -1217,72 +1170,64 @@ code {
     padding: 0;
     background: none;
     border: 0;
+    box-shadow: none;
     opacity: 1;
     visibility: visible;
     transform: none;
   }
 
   .dropdown__item {
-    padding: 0.7rem 0;
-    border-bottom: 1px solid var(--line);
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
     border-radius: 0;
-  }
-
-  .nav__cta {
-    margin-top: 1.5rem;
-    width: 100%;
-    padding: 0.8rem 1rem;
   }
 
   .nav__actions {
     display: contents;
   }
 
+  .nav__cta {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+  }
+
   body.nav-open {
     overflow: hidden;
-  }
-
-  .stages {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .values {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .stages li {
-    padding: 1.15rem 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .stages li + li {
-    padding-left: 0;
-    border-left: 0;
   }
 }
 
 @media (max-width: 560px) {
   .wrap,
   .nav__inner {
-    width: min(var(--wrap), 100% - 2.25rem);
+    width: min(var(--wrap), 100% - 2.5rem);
   }
 
   .hero__actions .btn {
     width: 100%;
   }
 
-  .index__row {
-    grid-template-columns: 2rem minmax(0, 1fr);
-  }
-
-  .index__desc {
-    grid-column: 2;
-    text-align: left;
-    margin-top: 0.1rem;
-  }
-
+  .values,
   .footer__grid {
     grid-template-columns: minmax(0, 1fr);
-    gap: 2rem;
+  }
+
+  .values li:nth-child(n + 2) {
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .journey__stages {
+    gap: 0.5rem;
+  }
+
+  .journey__icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .journey__icon svg {
+    width: 19px;
+    height: 19px;
   }
 }

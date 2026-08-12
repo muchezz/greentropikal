@@ -118,12 +118,23 @@ pages and the static assets; everything is embedded into the binary with
 caching. The system lives in `web/static/njiralab.css`; Njira Vault adds only
 what a working interface needs in `web/static/vault.css`.
 
-The palette is light: white page, Deep Indigo `#0F1724` type, emerald `#047857`
-as the one brand accent. Every colour that has to be *read* is darkened from its
-display value so it clears AA on white — teal `#0F766E` for technology, amber
-`#B45309` where progress or irreversibility has to be read. The bright emeralds
-(`#10B981`, `#34D399`) are 2.5:1 on white and appear only in the hero gradient
-and as dots, never carrying text.
+The palette is light and colour has semantic ownership:
+
+| | Colour | Where it may appear |
+| --- | --- | --- |
+| NjiraLabs | green `#16A34A` | company chrome, navigation, primary calls to action |
+| StudyZora | purple `#7C3AED` | inside the StudyZora product only |
+| Njira Vault | orange `#F59E0B` | inside Njira Vault only, plus the journey's arrival marker |
+
+Products own their accent by rebinding `--accent` on `.product--studyzora` /
+`.product--vault` (and `body.vault`), so nothing inside names purple or orange
+directly and neither can leak into the rest of the page. Where a product colour
+has to carry text it uses its `-dark` step (`#6D28D9`, `#B45309`) to clear AA;
+the display values stay on fills. Bright green `#22C55E` is 2.5:1 on white and
+is confined to the hero gradient and the mark.
+
+Type is Inter, self-hosted as a single variable `woff2` covering 100–900 across
+latin (48 KB), so the page still makes no third-party requests.
 
 The layout language is editorial rather than SaaS: sections are organised by a
 rail of small labels and hairline rules, not by stacking rounded containers.
@@ -135,12 +146,14 @@ in a system serif.
 
 ### Brand assets
 
-`web/static/mark.svg` and `favicon.svg` come from the supplied NjiraLabs brand
-pack, **recoloured** from its violet gradients to the emerald palette — the
-geometry is untouched, only the gradient stops and two flat fills are remapped.
-The favicon PNGs and `.ico` are regenerated from that recoloured master, so the
-pack's own violet exports are no longer used. If the brand reverts to violet,
-restoring the original files is the whole change. The wordmark is set
+The icons and favicons come from the supplied NjiraLabs brand pack and are used
+unmodified: `mark.svg` (green, company), `mark-studyzora.svg` (purple),
+`mark-vault.svg` (orange), plus `favicon.svg`, `favicon.ico` and the icon PNGs.
+
+The wordmark is set in Inter in HTML rather than used as an image. The pack's
+horizontal lockup draws its text with an SVG `<text>` element in Inter, which
+falls back to Arial on machines without Inter installed and renders
+inconsistently; setting it in HTML also keeps it crisp and selectable. The wordmark is set
 lowercase and two-tone in HTML (`njira` in ink, `labs` in violet) rather than as
 an image, so it stays crisp and selectable; the supplied horizontal lockup is
 not used in the navigation because its tagline is illegible at that size.
