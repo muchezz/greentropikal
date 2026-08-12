@@ -11,7 +11,7 @@
 
 body.vault {
   --accent: var(--orange);
-  --accent-dark: var(--orange-dark);
+  --accent-deep: var(--orange-deep);
   --accent-tint: var(--orange-tint);
 }
 
@@ -122,7 +122,7 @@ body.vault {
   padding: 0.6rem 0.7rem;
   background: var(--white);
   border: 1px solid var(--border);
-  border-radius: var(--r-btn);
+  border-radius: 12px;
   font-size: 0.9375rem;
 }
 
@@ -171,7 +171,7 @@ body.vault {
   gap: 0.5rem;
   font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--accent-dark);
+  color: var(--accent-deep);
 }
 
 .result__head svg {
@@ -192,15 +192,15 @@ body.vault {
   padding: 0.6rem 0.7rem;
   background: var(--white);
   border: 1px solid var(--border);
-  border-radius: var(--r-btn);
-  color: var(--accent-dark);
+  border-radius: 12px;
+  color: var(--accent-deep);
   font-family: var(--mono);
   font-size: 0.8125rem;
 }
 
 .link-box input:focus {
   outline: none;
-  border-color: var(--accent-dark);
+  border-color: var(--accent-deep);
 }
 
 .vault-facts {
@@ -227,7 +227,7 @@ body.vault {
 }
 
 .warn strong {
-  color: var(--accent-dark);
+  color: var(--accent-deep);
   font-weight: 600;
 }
 
@@ -253,7 +253,7 @@ body.vault {
 }
 
 .dot--live {
-  background: var(--accent-dark);
+  background: var(--accent-deep);
 }
 
 .dot--gone {
@@ -276,7 +276,7 @@ body.vault {
   padding: 1rem;
   background: var(--white);
   border: 1px solid var(--border);
-  border-radius: var(--r-btn);
+  border-radius: 12px;
   font-family: var(--mono);
   font-size: 0.875rem;
   line-height: 1.6;
@@ -356,7 +356,7 @@ body.vault {
 }
 
 .error-text {
-  color: var(--accent-dark);
+  color: var(--accent-deep);
 }
 
 @media (max-width: 640px) {

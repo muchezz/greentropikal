@@ -60,5 +60,20 @@ for (const v of variants) {
   await ctx.close();
 }
 
+// A full-viewport capture at desktop width, for the homepage's product panel.
+// The element crops above are the right shape beside a column of text; a panel
+// running the full width needs the product in its own chrome.
+{
+  const ctx = await browser.newContext({
+    viewport: { width: 1280, height: 800 },
+    deviceScaleFactor: 2,
+  });
+  const page = await ctx.newPage();
+  await page.goto(`${base}/vault`, { waitUntil: 'networkidle' });
+  await page.waitForTimeout(400);
+  await page.screenshot({ path: `${out}shot-vault-wide.png` });
+  await ctx.close();
+}
+
 await browser.close();
-console.log('captured wide and narrow Njira Vault shots');
+console.log('captured wide, narrow and panel Njira Vault shots');
