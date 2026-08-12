@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ .Title }}</title>
+<!-- A secret page must never be indexed, previewed, or archived, and carries
+     no description or social metadata that could echo its contents. -->
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0B0A1B">
+<link rel="icon" href="{{ asset "favicon.svg" }}" type="image/svg+xml">
+<link rel="alternate icon" href="{{ asset "favicon.png" }}" sizes="32x32">
+<link rel="stylesheet" href="{{ asset "njiralab.css" }}">
+<link rel="stylesheet" href="{{ asset "vault.css" }}">
+<script src="{{ asset "vault-view.js" }}" defer></script>
+</head>
+<body class="vault">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="vault-head">
+  <div class="vault-head__inner">
+    <a class="lockup" href="/vault" aria-label="Vault by NjiraLab">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M6 26V9.5L24 24V12" stroke="#7C3AED" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="24" cy="7" r="3" fill="#A78BFA"/>
+      </svg>
+      <span>
+        <span class="lockup__name">Vault</span>
+        <span class="lockup__by">by NjiraLab</span>
+      </span>
+    </a>
+    <a class="link" href="/vault">Create a secret</a>
+  </div>
+</header>
+
+<main class="vault-main" id="main">
+  <div class="card reader">
+    <p class="reader__status"><span class="dot" id="dot"></span><span id="status">Checking link</span></p>
+    <h1 id="headline">Someone shared a secret with you</h1>
+    <p class="reader__note" id="note">This secret is encrypted. Opening it counts as a view.</p>
+
+    <!-- Filled with textContent only; secret text is never parsed as markup. -->
+    <pre class="secret-out" id="output" hidden></pre>
+    <p class="reader__meta" id="meta" hidden></p>
+
+    <div class="actions" id="actions" hidden>
+      <button type="button" class="btn btn--primary" id="reveal">Reveal secret</button>
+    </div>
+
+    <div class="actions" id="post-actions" hidden>
+      <button type="button" class="btn btn--ghost" id="copy">Copy</button>
+      <button type="button" class="btn btn--ghost" id="hide">Hide</button>
+      <button type="button" class="btn btn--ghost" id="destroy">Destroy now</button>
+    </div>
+
+    <p class="warn" id="warn" hidden>
+      <strong>Save it somewhere safe.</strong> Once the view limit is reached this link stops working.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>About this link</h2>
+    <p class="card__lede">Vault stores encrypted text for a limited time. The decryption key travels in the part of the link after the <code>#</code>, which your browser does not send to the server. Clear this page from your history when you are done with it.</p>
+  </div>
+</main>
+
+<footer class="vault-foot">
+  <p>Vault — a product by <a class="link" href="/">NjiraLab</a></p>
+  <p>&copy; <span data-year>{{ .Year }}</span> NjiraLab</p>
+</footer>
+</body>
+</html>

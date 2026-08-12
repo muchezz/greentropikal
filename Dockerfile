@@ -1,28 +1,31 @@
-FROM golang:1.21 AS builder
+FROM golang:1.24-alpine AS builder
 
-WORKDIR /app
+WORKDIR /src
 
-# Copy both go.mod and go.sum
+# Dependencies first so the module layer is cached across source changes.
 COPY go.mod go.sum ./
-
-# Download dependencies
 RUN go mod download
 
-COPY main.go .
+# The web directory is embedded into the binary via go:embed, so it must be
+# present at build time — nothing is read from disk at runtime.
+COPY *.go ./
+COPY web ./web
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o app main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -trimpath -ldflags="-s -w" -o /out/njiralab .
 
-FROM debian:bookworm-slim
+FROM alpine:3.20
 
-RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache ca-certificates wget \
+ && adduser -D -H -u 10001 njira
 
-WORKDIR /app
+COPY --from=builder /out/njiralab /usr/local/bin/njiralab
 
-COPY --from=builder /app/app .
-COPY index.html secrets.html secret_view.html ./
+USER njira
+EXPOSE 8080
 
 ENV PORT=8080 REDIS_URL=redis:6379
 
-EXPOSE 8080
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD wget -qO- http://127.0.0.1:8080/api/health >/dev/null || exit 1
 
-CMD ["./app"]
+ENTRYPOINT ["njiralab"]

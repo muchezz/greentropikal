@@ -1,0 +1,361 @@
+/* Vault by NjiraLab
+   -----------------
+   Vault keeps the NjiraLab palette but sits on darker surfaces and uses cyan
+   as its working accent. It is a focused utility, so the layout is a single
+   narrow column with nothing competing for attention. */
+
+body.vault {
+  background: var(--indigo-950);
+}
+
+/* Header: the product name leads, the parent brand endorses. */
+.vault-head {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(11, 10, 27, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.vault-head__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: min(var(--wrap), 100% - 3rem);
+  margin-inline: auto;
+  height: 60px;
+}
+
+.lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.lockup svg {
+  width: 24px;
+  height: 24px;
+  flex: none;
+}
+
+.lockup__name {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.lockup__by {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--slate-dim);
+}
+
+.vault-head a.link {
+  font-size: 0.88rem;
+}
+
+.vault-main {
+  width: min(680px, 100% - 3rem);
+  margin-inline: auto;
+  padding-block: clamp(2.75rem, 7vw, 4.5rem) 4rem;
+}
+
+.vault-intro {
+  margin-bottom: 2.5rem;
+}
+
+.vault-intro h1 {
+  font-size: clamp(2rem, 5vw, 2.9rem);
+}
+
+.vault-intro p {
+  margin-top: 1rem;
+  color: var(--slate);
+  font-size: 1.05rem;
+  max-width: min(48ch, 100%);
+}
+
+.card {
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  background: var(--indigo-800);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+}
+
+.card + .card {
+  margin-top: 1.5rem;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.field textarea.secret-input {
+  min-height: 168px;
+  font-family: var(--mono);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.field__hint {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--slate-dim);
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.actions .btn {
+  flex: 1;
+}
+
+/* ---------- Result ---------- */
+
+.result[hidden],
+[hidden] {
+  display: none !important;
+}
+
+.result__head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+  color: var(--cyan);
+}
+
+.result__head svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+.link-box {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+
+.link-box input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.8rem 0.9rem;
+  background: var(--indigo-950);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  color: var(--cyan);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+}
+
+.link-box input:focus {
+  outline: none;
+  border-color: var(--cyan);
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-top: 1.25rem;
+  font-size: 0.86rem;
+  color: var(--slate);
+}
+
+.facts strong {
+  color: var(--white);
+  font-weight: 600;
+}
+
+.warn {
+  margin-top: 1.25rem;
+  padding: 0.9rem 1rem;
+  background: rgba(245, 158, 11, 0.07);
+  border-left: 2px solid var(--amber);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.88rem;
+  color: var(--slate);
+}
+
+.warn strong {
+  color: var(--amber);
+  font-weight: 600;
+}
+
+/* ---------- Reader ---------- */
+
+.reader {
+  text-align: left;
+}
+
+.reader__status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.86rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--slate-dim);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--slate-dim);
+  flex: none;
+}
+
+.dot--live {
+  background: var(--cyan);
+  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.14);
+}
+
+.dot--gone {
+  background: var(--amber);
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.14);
+}
+
+.reader h1 {
+  margin-top: 1rem;
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+}
+
+.reader__note {
+  margin-top: 0.9rem;
+  color: var(--slate);
+  font-size: 0.98rem;
+}
+
+.secret-out {
+  margin-top: 1.75rem;
+  padding: 1.25rem;
+  background: var(--indigo-950);
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  font-family: var(--mono);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--white);
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 40vh;
+  overflow: auto;
+}
+
+.reader__meta {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--slate-dim);
+}
+
+/* ---------- How it works / claims ---------- */
+
+.steps {
+  counter-reset: step;
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1.25rem;
+}
+
+.steps li {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  font-size: 0.94rem;
+  color: var(--slate);
+}
+
+.steps li::before {
+  counter-increment: step;
+  content: counter(step);
+  width: 24px;
+  height: 24px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--lavender);
+}
+
+.claims {
+  display: grid;
+  gap: 1.1rem;
+  margin-top: 1.25rem;
+}
+
+.claims div {
+  font-size: 0.93rem;
+  color: var(--slate);
+}
+
+.claims strong {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: var(--white);
+  font-weight: 600;
+}
+
+.card h2 {
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.card__lede {
+  margin-top: 0.5rem;
+  font-size: 0.93rem;
+  color: var(--slate-dim);
+}
+
+.vault-foot {
+  width: min(680px, 100% - 3rem);
+  margin: 0 auto;
+  padding-bottom: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--slate-dim);
+}
+
+.vault-foot a:hover {
+  color: var(--white);
+}
+
+.error-text {
+  color: var(--amber);
+}
+
+@media (max-width: 560px) {
+  .vault-head__inner,
+  .vault-main,
+  .vault-foot {
+    width: min(var(--wrap), 100% - 2.25rem);
+  }
+
+  .field-row,
+  .actions {
+    grid-template-columns: minmax(0, 1fr);
+    flex-direction: column;
+  }
+
+  .link-box {
+    flex-direction: column;
+  }
+}

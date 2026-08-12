@@ -3,33 +3,43 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: greentropik-app
+    container_name: njiralab
     ports:
       - "8080:8080"
     environment:
       PORT: "8080"
+      # Set this to the public origin in production — it is used for canonical
+      # URLs, the sitemap, and the links Vault hands back.
       BASE_URL: "http://localhost:8080"
       REDIS_URL: "redis:6379"
+      # Fill these in once the destinations exist.
+      # STUDYZORA_URL: "https://…"
+      # CONTACT_EMAIL: "hello@…"
+      # Behind a TLS-terminating proxy, set both of these:
+      # ENABLE_HSTS: "true"
+      # TRUST_PROXY: "true"
     depends_on:
-      - redis
+      redis:
+        condition: service_healthy
     restart: unless-stopped
     networks:
-      - greentropik-network
+      - njiralab
 
   redis:
     image: redis:7-alpine
-    container_name: greentropik-redis
-    ports:
-      - "6379:6379"
+    container_name: njiralab-redis
+    # Vault records are short-lived by design and expiry is enforced by Redis
+    # itself, so nothing is persisted to disk. Secrets never touch a volume.
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
     networks:
-      - greentropik-network
-    volumes:
-      - redis-data:/data
+      - njiralab
 
 networks:
-  greentropik-network:
+  njiralab:
     driver: bridge
-
-volumes:
-  redis-data:

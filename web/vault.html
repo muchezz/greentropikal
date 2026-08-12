@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ .Title }}</title>
+<meta name="description" content="{{ .Description }}">
+<link rel="canonical" href="{{ .Canonical }}">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0B0A1B">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NjiraLab">
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description" content="{{ .Description }}">
+<meta property="og:url" content="{{ .Canonical }}">
+<meta property="og:image" content="{{ .BaseURL }}/static/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="{{ asset "favicon.svg" }}" type="image/svg+xml">
+<link rel="alternate icon" href="{{ asset "favicon.png" }}" sizes="32x32">
+<link rel="apple-touch-icon" href="{{ asset "apple-touch-icon.png" }}">
+<link rel="stylesheet" href="{{ asset "njiralab.css" }}">
+<link rel="stylesheet" href="{{ asset "vault.css" }}">
+<script src="{{ asset "vault.js" }}" defer></script>
+</head>
+<body class="vault">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="vault-head">
+  <div class="vault-head__inner">
+    <a class="lockup" href="/vault" aria-label="Vault by NjiraLab">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M6 26V9.5L24 24V12" stroke="#7C3AED" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="24" cy="7" r="3" fill="#A78BFA"/>
+      </svg>
+      <span>
+        <span class="lockup__name">Vault</span>
+        <span class="lockup__by">by NjiraLab</span>
+      </span>
+    </a>
+    <a class="link" href="/">NjiraLab</a>
+  </div>
+</header>
+
+<main class="vault-main" id="main">
+  <div class="vault-intro">
+    <h1>Share secrets. Keep control.</h1>
+    <p>Securely share sensitive information without leaving permanent copies in ordinary messages.</p>
+  </div>
+
+  <div class="card">
+    <form id="vault-form">
+      <div class="field">
+        <label for="secret">Secret</label>
+        <textarea class="secret-input" id="secret" name="secret" required
+          placeholder="Password, API key, token, credentials, configuration…" maxlength="65536"></textarea>
+        <p class="field__hint" id="secret-hint">Up to 64 KB of text.</p>
+      </div>
+
+      <div class="field">
+        <label for="kind">Type</label>
+        <select id="kind" name="kind">
+          <option value="password">Password</option>
+          <option value="api-key">API key</option>
+          <option value="token">Token</option>
+          <option value="credentials">Credentials</option>
+          <option value="config">Configuration</option>
+          <option value="other" selected>Other</option>
+        </select>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="expiry">Expires after</label>
+          <select id="expiry" name="expiry">
+            <option value="300">5 minutes</option>
+            <option value="3600">1 hour</option>
+            <option value="86400" selected>24 hours</option>
+            <option value="604800">7 days</option>
+            <option value="2592000">30 days</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="views">Views allowed</label>
+          <select id="views" name="views">
+            <option value="1" selected>Once, then destroyed</option>
+            <option value="3">3 views</option>
+            <option value="5">5 views</option>
+            <option value="10">10 views</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn btn--primary" id="create">Create secure link</button>
+      </div>
+      <p class="field__hint error-text" id="form-error" role="alert" hidden></p>
+    </form>
+
+    <div class="result" id="result" hidden>
+      <p class="result__head">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m4 12.5 5 5 11-11"/>
+        </svg>
+        Secure link ready
+      </p>
+
+      <div class="link-box">
+        <input type="text" id="secret-link" readonly aria-label="Secure link">
+        <button type="button" class="btn btn--ghost" id="copy">Copy</button>
+      </div>
+
+      <p class="facts">
+        <span>Expires <strong id="fact-expiry">—</strong></span>
+        <span>Views <strong id="fact-views">—</strong></span>
+      </p>
+
+      <p class="warn">
+        <strong>Copy it now.</strong> The part of the link after the <code>#</code> is the decryption key, and we do not keep a copy. If you lose the link, the secret cannot be recovered.
+      </p>
+
+      <div class="actions">
+        <button type="button" class="btn btn--ghost btn--wide" id="again">Create another</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <ol class="steps">
+      <li>You write the secret and choose how long it lives and how many times it can be opened.</li>
+      <li>We encrypt it with a key generated for that one secret, then store only the ciphertext.</li>
+      <li>You get a link. The key sits after the <code>#</code>, which browsers never send to a server.</li>
+      <li>The recipient opens the link once. When the view limit or the expiry is reached, the record is deleted.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>What this does, precisely</h2>
+    <p class="card__lede">The claims below describe how Vault is actually built. Nothing more is implied.</p>
+    <div class="claims">
+      <div>
+        <strong>AES-256-GCM encryption</strong>
+        Each secret gets its own random 256-bit key. The stored record holds only authenticated ciphertext.
+      </div>
+      <div>
+        <strong>The key is not in our database</strong>
+        The key is returned to you in the link fragment and is never written to storage. The stored ciphertext alone cannot be decrypted.
+      </div>
+      <div>
+        <strong>Expiry is enforced by storage</strong>
+        Every record carries a time-to-live and is removed when it lapses, whether or not anyone opens it.
+      </div>
+      <div>
+        <strong>One-time access is atomic</strong>
+        The view counter increments and the record is deleted in a single storage operation, so a one-view secret cannot be read twice by concurrent requests.
+      </div>
+      <div>
+        <strong>No account, and no secret contents in our logs</strong>
+        Vault does not ask who you are, and secret contents and link fragments are never written to application logs.
+      </div>
+      <div>
+        <strong>What this is not</strong>
+        This is not end-to-end encryption: the plaintext and the key both pass through our server while a secret is created and while it is read. Anyone holding the complete link can open the secret, and the link stays in browser history until it is cleared. Use it for temporary handoffs, not as long-term storage.
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="vault-foot">
+  <p>Vault — a product by <a class="link" href="/">NjiraLab</a></p>
+  <p>&copy; <span data-year>{{ .Year }}</span> NjiraLab</p>
+</footer>
+</body>
+</html>
