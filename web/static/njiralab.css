@@ -555,25 +555,24 @@ code {
 }
 
 /* ---------- Hero path ----------
-   Njira means path. The route climbs left to right through three milestones —
-   StudyZora, Njira Vault, and where they lead — so the illustration is about
-   the products rather than decorating the column. */
+   Njira means path. One generated ribbon carries the whole idea: it enters low
+   and pale, narrows and deepens as it climbs, and arrives at a destination
+   node. The three stages are marked on the route itself. */
 
 .journey {
   position: relative;
-  /* Runs past the container's right edge, as in the reference. */
   margin-right: calc(var(--pad) * -1);
 }
 
-/* A dot field behind the path, faded out at the edges. Deliberately faint. */
+/* A dot field behind the route, masked so it fades out at its own edges. */
 .journey::before {
   content: "";
   position: absolute;
-  inset: -12% -6% -18% -10%;
-  background-image: radial-gradient(circle, rgba(15, 23, 42, 0.08) 1px, transparent 1px);
+  inset: -10% -6% -14% -8%;
+  background-image: radial-gradient(circle, rgba(15, 23, 42, 0.075) 1px, transparent 1px);
   background-size: 24px 24px;
-  -webkit-mask-image: radial-gradient(ellipse 65% 60% at 62% 45%, #000 35%, transparent 78%);
-  mask-image: radial-gradient(ellipse 65% 60% at 62% 45%, #000 35%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 62% 58% at 60% 44%, #000 32%, transparent 76%);
+  mask-image: radial-gradient(ellipse 62% 58% at 60% 44%, #000 32%, transparent 76%);
   pointer-events: none;
 }
 
@@ -583,86 +582,88 @@ code {
   height: auto;
 }
 
-.journey__milestones {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: end;
-  margin-top: -3.5rem;
-  position: relative;
-}
-
-.milestone {
-  position: relative;
-  text-align: center;
-}
-
-/* Each milestone is staggered to follow the path's climb. */
-.milestone--studyzora {
-  margin-bottom: 0;
-}
-.milestone--vault {
-  margin-bottom: 3.5rem;
-}
-.milestone--progress {
-  margin-bottom: 7rem;
-}
-
-/* A hairline from the marker up to the route it sits on. */
-.milestone__icon::before {
-  content: "";
+.journey__stages {
   position: absolute;
-  left: 50%;
-  bottom: 100%;
-  width: 1px;
-  height: 1.6rem;
-  background: linear-gradient(to top, var(--border), transparent);
+  inset: 0;
 }
 
-.milestone__icon {
-  position: relative;
-  width: 60px;
-  height: 60px;
+/* Anchored on the centreline, then nudged up by half the marker so the circle
+   is centred on the route rather than hanging from it. */
+.stage {
+  position: absolute;
+  width: max-content;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.stage__icon {
+  width: 56px;
+  height: 56px;
   margin: 0 auto;
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: var(--white);
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+  background: var(--green-tint);
+  color: var(--green-deep);
+  border: 1px solid var(--white);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.1);
 }
 
-.milestone__icon svg {
-  width: 24px;
-  height: 24px;
+.stage__icon svg {
+  width: 23px;
+  height: 23px;
 }
 
-.milestone strong {
+/* The middle stage is the company's own, so it is solid. */
+.stage--build .stage__icon {
+  background: var(--green-deep);
+  color: #fff;
+}
+
+/* Arrival borrows the destination signal. */
+.stage--further .stage__icon {
+  background: var(--orange-tint);
+  color: var(--orange-deep);
+}
+
+/* Dashed drop from the marker to its label. */
+.stage__line {
   display: block;
-  margin-top: 0.7rem;
+  width: 1px;
+  height: 22px;
+  margin: 0.5rem auto 0.4rem;
+  background-image: linear-gradient(to bottom, var(--border) 0 4px, transparent 4px 8px);
+  background-size: 1px 8px;
+}
+
+.stage strong {
+  display: block;
   font-size: 0.9375rem;
   font-weight: 700;
   color: var(--ink);
 }
 
-.milestone span {
+.stage__sub {
   display: block;
   font-size: 0.85rem;
   color: var(--muted);
 }
 
-/* Product colour appears here only because each milestone is a product. */
-.milestone--studyzora .milestone__icon {
-  background: var(--purple-tint);
-  color: var(--purple);
+/* Anchors are generated from the ribbon's centreline (see the journey block in
+   index.html) so each marker lands exactly on the route. */
+.stage--learn {
+  left: 26.01%;
+  top: 88.11%;
 }
 
-.milestone--vault .milestone__icon {
-  background: var(--orange-tint);
-  color: var(--orange-deep);
+.stage--build {
+  left: 60.39%;
+  top: 65.8%;
 }
 
-.milestone--progress .milestone__icon {
-  background: var(--green-deep);
-  color: #fff;
+.stage--further {
+  left: 78%;
+  top: 43.5%;
 }
 
 /* ---------- Product showcases ---------- */
@@ -1167,24 +1168,29 @@ code {
   }
 }
 
-.journey__fill {
+.journey__fill,
+.journey__ring {
   opacity: 0;
-  animation: fade-in 1.1s var(--ease) 0.35s forwards;
+  animation: fade-in 1.1s var(--ease) 0.3s forwards;
 }
 
-.milestone {
-  opacity: 0;
-  animation: milestone-in 0.55s var(--ease) forwards;
+.journey__ring {
+  animation-delay: 0.55s;
 }
 
-.milestone--studyzora {
-  animation-delay: 0.85s;
+.stage {
+  opacity: 0;
+  animation: stage-in 0.55s var(--ease) forwards;
 }
-.milestone--vault {
-  animation-delay: 1.05s;
+
+.stage--learn {
+  animation-delay: 0.7s;
 }
-.milestone--progress {
-  animation-delay: 1.25s;
+.stage--build {
+  animation-delay: 0.9s;
+}
+.stage--further {
+  animation-delay: 1.1s;
 }
 
 @keyframes fade-in {
@@ -1193,14 +1199,14 @@ code {
   }
 }
 
-@keyframes milestone-in {
+@keyframes stage-in {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translate(-50%, calc(-50% + 10px));
   }
   to {
     opacity: 1;
-    transform: none;
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -1218,7 +1224,9 @@ code {
     stroke-dashoffset: 0;
   }
   .journey__fill,
-  .milestone {
+  .journey__ring,
+  .stage {
+    animation: none;
     opacity: 1;
   }
 }
@@ -1247,11 +1255,6 @@ code {
 
   .hero .h1 {
     max-width: 100%;
-  }
-
-  .milestone__icon {
-    width: 52px;
-    height: 52px;
   }
 }
 
@@ -1296,6 +1299,31 @@ code {
 
   .journey {
     margin-right: 0;
+  }
+
+  /* The route scales with its column but type does not, so the markers are
+     stepped down to keep the labels clear of the ribbon. */
+  .stage__icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .stage__icon svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .stage__line {
+    height: 15px;
+    margin: 0.35rem auto 0.3rem;
+  }
+
+  .stage strong {
+    font-size: 0.8125rem;
+  }
+
+  .stage__sub {
+    font-size: 0.75rem;
   }
 
   .h1 br {
@@ -1396,24 +1424,6 @@ code {
 @media (max-width: 620px) {
   .hero__actions .btn {
     width: 100%;
-  }
-
-  .milestone strong {
-    font-size: 0.85rem;
-  }
-
-  .milestone span {
-    font-size: 0.78rem;
-  }
-
-  .milestone__icon {
-    width: 44px;
-    height: 44px;
-  }
-
-  .milestone__icon svg {
-    width: 19px;
-    height: 19px;
   }
 }
 
