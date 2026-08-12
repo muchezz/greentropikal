@@ -37,7 +37,7 @@
 <header class="nav" id="nav">
   <div class="nav__inner">
     <a class="brand" href="/" aria-label="NjiraLabs home">
-      <img class="brand__mark" src="{{ asset "mark.svg" }}" alt="" width="30" height="30">
+      <img class="brand__mark" src="{{ asset "mark.svg" }}" alt="" width="44" height="44">
       <span class="brand__word">njira<em>labs</em></span>
     </a>
 
@@ -86,7 +86,7 @@
     <div class="wrap hero__grid">
       <div>
         <p class="eyebrow">NjiraLabs</p>
-        <h1 class="h1">Building technology for <em>human progress.</em></h1>
+        <h1 class="h1">Building technology <br>for <em>human progress.</em></h1>
         <p class="body">NjiraLabs builds intelligent products and technology systems that help people learn, build, and go further.</p>
         <div class="hero__actions">
           <a class="btn btn--solid" href="#products">Explore our products <span class="btn__arrow" aria-hidden="true">→</span></a>
@@ -94,54 +94,64 @@
         </div>
       </div>
 
-      <!-- Njira means path. The route runs Learn → Build → Go further, and each
-           stage is named, so the graphic states something about the company
-           rather than decorating the column. -->
+      <!-- Njira means path. A tapered route climbing left to right through
+           three milestones — StudyZora, Njira Vault, and where they lead. The
+           milestones are the products, which is the only reason purple and
+           orange appear outside their own sections. -->
       <div class="journey">
-        <svg class="journey__svg" viewBox="0 0 560 260" fill="none" aria-hidden="true">
+        <svg class="journey__svg" viewBox="0 0 760 470" fill="none" aria-hidden="true">
           <defs>
-            <linearGradient id="njira-route" gradientUnits="userSpaceOnUse" x1="20" y1="230" x2="520" y2="40">
-              <stop offset="0" stop-color="#BBF7D0"/>
-              <stop offset="0.5" stop-color="#22C55E"/>
+            <linearGradient id="njira-route" gradientUnits="userSpaceOnUse" x1="0" y1="430" x2="720" y2="90">
+              <stop offset="0" stop-color="#DCFCE7"/>
+              <stop offset="0.42" stop-color="#4ADE80"/>
+              <stop offset="0.78" stop-color="#22C55E"/>
               <stop offset="1" stop-color="#16A34A"/>
             </linearGradient>
           </defs>
-          <path class="draw" pathLength="1"
-                d="M12 232c110 0 150-6 196-46 44-38 66-64 130-70 62-6 96-30 108-76"
-                stroke="url(#njira-route)" stroke-width="30" stroke-linecap="round"/>
-          <circle cx="452" cy="42" r="30" fill="#16A34A" opacity="0.09"/>
-          <circle cx="452" cy="42" r="12" fill="#16A34A"/>
+
+          <!-- One tapered ribbon: wide and pale where the journey starts,
+               narrowing and deepening as it climbs. -->
+          <path class="journey__fill"
+                d="M-20 356C110 352 208 344 276 292C334 248 396 236 470 232C548 228 596 178 646 140C682 112 700 104 726 102A16 16 0 0 1 726 134C700 136 678 146 654 170C606 212 566 268 486 274C414 280 366 286 316 326C258 372 148 410 -20 424Z"
+                fill="url(#njira-route)"/>
+
+          <!-- Destination. -->
+          <circle class="journey__fill" cx="726" cy="70" r="40" fill="#22C55E" opacity="0.09"/>
+          <circle class="journey__fill" cx="726" cy="70" r="24" fill="#22C55E" opacity="0.16"/>
+          <circle class="journey__fill" cx="726" cy="70" r="11" fill="#16A34A"/>
         </svg>
 
-        <ol class="journey__stages">
-          <li class="journey__stage">
-            <span class="journey__icon">
+        <div class="journey__milestones">
+          <div class="milestone milestone--studyzora">
+            <span class="milestone__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 4 2.5 9 12 14l9.5-5z"/><path d="M6.5 11.3V16c0 1.7 2.5 3 5.5 3s5.5-1.3 5.5-3v-4.7M21.5 9v5"/>
+                <path d="M12 4 2.5 9 12 14l9.5-5z"/><path d="M6.5 11.3V16c0 1.7 2.5 3 5.5 3s5.5-1.3 5.5-3v-4.7"/>
               </svg>
             </span>
-            <strong>Learn</strong>
-            <span>Continuously</span>
-          </li>
-          <li class="journey__stage">
-            <span class="journey__icon">
+            <strong>StudyZora</strong>
+            <span>Learn</span>
+          </div>
+
+          <div class="milestone milestone--vault">
+            <span class="milestone__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect x="4" y="10.5" width="16" height="10.5" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/>
               </svg>
             </span>
-            <strong>Build</strong>
-            <span>Securely</span>
-          </li>
-          <li class="journey__stage">
-            <span class="journey__icon">
+            <strong>Njira Vault</strong>
+            <span>Share securely</span>
+          </div>
+
+          <div class="milestone milestone--progress">
+            <span class="milestone__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M12 2.8c3.2 2.3 5 5.8 5 9.6l-2.4 2.6H9.4L7 12.4c0-3.8 1.8-7.3 5-9.6Z"/><circle cx="12" cy="10.4" r="1.9"/><path d="M9.4 15v3.3l2.6 2.9 2.6-2.9V15"/>
               </svg>
             </span>
-            <strong>Go further</strong>
-            <span>Together</span>
-          </li>
-        </ol>
+            <strong>Progress</strong>
+            <span>Go further</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -154,32 +164,36 @@
         <h2 class="h2">Two products, built and run by NjiraLabs.</h2>
       </div>
 
-      <div class="products__grid">
+      <div class="showcases">
 
-        <!-- StudyZora — purple, and purple appears nowhere else on the page. -->
-        <article class="product product--studyzora reveal" id="studyzora">
-          <div class="product__body">
-            <p class="product__num">01</p>
-            <div class="product__name">
-              <img src="{{ asset "mark-studyzora.svg" }}" alt="" width="40" height="40">
+        <!-- StudyZora — purple, and purple appears nowhere else except its own
+             milestone in the hero. -->
+        <article class="showcase showcase--studyzora reveal" id="studyzora">
+          <div class="showcase__text">
+            <p class="showcase__num">01</p>
+            <div class="showcase__name">
+              <span class="showcase__badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 3 3 7.5 12 12l9-4.5z"/><path d="m3 12 9 4.5 9-4.5"/><path d="m3 16.5 9 4.5 9-4.5"/>
+                </svg>
+              </span>
               <h3 class="h3">StudyZora</h3>
             </div>
-            <p class="product__kicker">AI-powered learning platform</p>
-            <p class="product__desc">Turn learning materials into active, personalized study experiences.</p>
-            <div class="product__cta">
+            <p class="showcase__kicker">AI-powered learning platform</p>
+            <p class="showcase__desc">Turn learning materials into active, personalized study experiences.</p>
+            <div class="showcase__cta">
               {{ if .HasStudyZoraLink }}
-              <a class="btn btn--solid" href="{{ .StudyZoraURL }}" target="_blank" rel="noopener">Explore StudyZora <span class="btn__arrow" aria-hidden="true">→</span></a>
+              <a class="btn btn--outline" href="{{ .StudyZoraURL }}" target="_blank" rel="noopener">Explore StudyZora <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
               {{ else }}
-              <a class="btn btn--outline" href="#contact">Explore StudyZora <span class="btn__arrow" aria-hidden="true">→</span></a>
+              <a class="btn btn--outline" href="#contact">Explore StudyZora <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
               {{ end }}
             </div>
           </div>
 
-          <div class="product__media">
+          <div class="showcase__media">
             {{ if .HasStudyZoraShot }}
-            <img class="product__shot" src="{{ asset "studyzora.png" }}"
+            <img class="showcase__shot" src="{{ asset "studyzora.png" }}"
                  alt="The StudyZora interface" loading="lazy" decoding="async">
-            <p class="product__caption">Learning material becomes something you practise.</p>
             {{ else }}
             <!-- No StudyZora capture has been supplied. Rather than invent a
                  dashboard, what the product does is set as type. Drop a real
@@ -197,36 +211,38 @@
                 <span class="stages__num">3</span>
                 <span><strong>Master</strong><span>Study sessions land where you are still weak.</span></span>
               </li>
+              <li class="stages__note">Interface capture coming from the StudyZora team.</li>
             </ol>
-            <p class="product__caption">Interface capture coming from the StudyZora team.</p>
             {{ end }}
           </div>
         </article>
 
-        <!-- Njira Vault — orange, and orange appears nowhere else except the
-             journey's arrival marker. -->
-        <article class="product product--vault reveal" id="njira-vault">
-          <div class="product__body">
-            <p class="product__num">02</p>
-            <div class="product__name">
-              <img src="{{ asset "mark-vault.svg" }}" alt="" width="40" height="40">
+        <!-- Njira Vault — orange, showing the interface this repository runs. -->
+        <article class="showcase showcase--vault reveal" id="njira-vault">
+          <div class="showcase__text">
+            <p class="showcase__num">02</p>
+            <div class="showcase__name">
+              <span class="showcase__badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 2.6 19.5 5.5v6.1c0 4.5-3.1 8-7.5 9.4-4.4-1.4-7.5-4.9-7.5-9.4V5.5z"/><path d="M12 10.2v3.4"/>
+                </svg>
+              </span>
               <h3 class="h3">Njira Vault</h3>
             </div>
-            <p class="product__kicker">Secure secret sharing</p>
-            <p class="product__desc">Create and share sensitive information through temporary, controlled access.</p>
-            <div class="product__cta">
-              <a class="btn btn--solid" href="/vault">Open Njira Vault <span class="btn__arrow" aria-hidden="true">→</span></a>
+            <p class="showcase__kicker">Secure secret sharing</p>
+            <p class="showcase__desc">Create and share sensitive information through temporary, controlled access.</p>
+            <div class="showcase__cta">
+              <a class="btn btn--outline" href="/vault">Open Njira Vault <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
             </div>
           </div>
 
-          <div class="product__media">
+          <div class="showcase__media">
             <picture>
-              <source media="(max-width: 700px)" srcset="{{ asset "shot-vault-create-narrow.png" }}" width="788" height="1276">
-              <img class="product__shot" src="{{ asset "shot-vault-create.png" }}" width="1520" height="1090"
+              <source media="(max-width: 900px)" srcset="{{ asset "shot-vault-create-narrow.png" }}">
+              <img class="showcase__shot" src="{{ asset "shot-vault-create.png" }}" width="1520" height="1056"
                    alt="The Njira Vault create form: a field for the secret, its type, an expiry and a view limit."
                    loading="lazy" decoding="async">
             </picture>
-            <p class="product__caption">Set an expiry and a view limit; the key never reaches our database.</p>
           </div>
         </article>
       </div>
@@ -239,6 +255,7 @@
               <path d="m12 2.5 8.5 4.8v9.4L12 21.5 3.5 16.7V7.3z"/><path d="M12 12.1v9.4M12 12.1l8.5-4.8M12 12.1 3.5 7.3"/>
             </svg>
           </span>
+          <span class="values__num">01</span>
           <strong>Purpose-built products</strong>
           <p>We build products that solve real problems and create meaningful impact.</p>
         </li>
@@ -248,6 +265,7 @@
               <path d="M12 2.5 20 5.7v6c0 4.7-3.3 8.4-8 9.8-4.7-1.4-8-5.1-8-9.8v-6z"/>
             </svg>
           </span>
+          <span class="values__num">02</span>
           <strong>Security by design</strong>
           <p>Security and privacy are built in from day one, not added later.</p>
         </li>
@@ -257,6 +275,7 @@
               <path d="m8.5 8-4.5 4 4.5 4M15.5 8l4.5 4-4.5 4"/>
             </svg>
           </span>
+          <span class="values__num">03</span>
           <strong>Engineering excellence</strong>
           <p>We care about clean code, reliable systems, and great user experiences.</p>
         </li>
@@ -266,6 +285,7 @@
               <circle cx="9" cy="8.5" r="3.2"/><path d="M2.8 20c.6-3.4 3.1-5.4 6.2-5.4s5.6 2 6.2 5.4"/><path d="M16.5 6.2a3.2 3.2 0 0 1 0 5.9M18.4 14.9c2 .8 3.4 2.6 3.8 5.1"/>
             </svg>
           </span>
+          <span class="values__num">04</span>
           <strong>Human progress</strong>
           <p>Everything we build is in service of learning, building, and going further.</p>
         </li>
@@ -416,7 +436,7 @@
     <div class="footer__grid">
       <div class="footer__brand">
         <a class="brand" href="/">
-          <img class="brand__mark" src="{{ asset "mark.svg" }}" alt="" width="30" height="30">
+          <img class="brand__mark" src="{{ asset "mark.svg" }}" alt="" width="44" height="44">
           <span class="brand__word">njira<em>labs</em></span>
         </a>
         <p>Building technology for human progress.</p>

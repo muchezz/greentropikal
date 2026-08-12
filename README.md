@@ -136,13 +136,17 @@ is confined to the hero gradient and the mark.
 Type is Inter, self-hosted as a single variable `woff2` covering 100–900 across
 latin (48 KB), so the page still makes no third-party requests.
 
-The layout language is editorial rather than SaaS: sections are organised by a
-rail of small labels and hairline rules, not by stacking rounded containers.
-A card is used only where something genuinely is an interface object — the
-Vault form is one, an "about" paragraph is not. Corners stay at 4px, the type
-scale is deliberately narrow so the hero is the only large thing on the page,
-and the philosophy statement is the single place the page changes voice, set
-in a system serif.
+The homepage follows the supplied design reference: an 84px header, a
+two-column hero (46/54) with a tapered path illustration over a faint dot
+field, two product showcases split text-left / interface-right with the
+screenshot running past the card edge, and a four-column values row. Corners
+are 10px on buttons, 12px on screenshots, 16px on cards; shadows stay at
+`0 8px 30px rgba(15,23,42,.06)` except under product screenshots.
+
+The hero headline carries an explicit `<br>` so it breaks after "technology" as
+the reference does, rather than leaving it to the measure. The break is removed
+below 820px, where the headline wraps naturally and the path moves beneath the
+copy.
 
 ### Brand assets
 
