@@ -57,7 +57,7 @@ go run .
 | `REDIS_URL` | `localhost:6379` | Accepts `host:port` or a full `redis://` URL |
 | `REDIS_PASSWORD`, `REDIS_DB` | — | Used only with the `host:port` form |
 | `STUDYZORA_URL` | unset | When unset, the StudyZora call to action points at the contact section instead of inventing a destination |
-| `CONTACT_EMAIL` | `hello@njiralab.com` (note: singular domain) | Address shown in the contact section and used by the contact form's `mailto:` |
+| `CONTACT_EMAIL` | `hello@njiralabs.com` | Address shown in the contact section and used by the contact form's `mailto:` |
 | `ALLOWED_ORIGINS` | unset | Comma-separated origins permitted to call the API cross-origin. Unset means same-origin only; `*` is ignored on purpose |
 | `TRUST_PROXY` | `false` | Set to `true` only behind a proxy that overwrites `X-Forwarded-For`, otherwise clients can spoof their rate-limit identity |
 | `ENABLE_HSTS` | `false` | Set to `true` when served over HTTPS |
@@ -118,11 +118,12 @@ pages and the static assets; everything is embedded into the binary with
 caching. The system lives in `web/static/njiralab.css`; Njira Vault adds only
 what a working interface needs in `web/static/vault.css`.
 
-The palette is light: white page, Deep Indigo `#0F1724` type, violet as the one
-brand accent. The signal colours are darkened from their display values so they
-stay readable on white — cyan `#0E7490` for technology, amber `#B45309` where
-progress or irreversibility has to be read (the raw `#F59E0B` is kept for
-fills). Every foreground/surface pair clears WCAG AA.
+The palette is light: white page, Deep Indigo `#0F1724` type, emerald `#047857`
+as the one brand accent. Every colour that has to be *read* is darkened from its
+display value so it clears AA on white — teal `#0F766E` for technology, amber
+`#B45309` where progress or irreversibility has to be read. The bright emeralds
+(`#10B981`, `#34D399`) are 2.5:1 on white and appear only in the hero gradient
+and as dots, never carrying text.
 
 The layout language is editorial rather than SaaS: sections are organised by a
 rail of small labels and hairline rules, not by stacking rounded containers.
@@ -134,8 +135,12 @@ in a system serif.
 
 ### Brand assets
 
-`web/static/mark.svg`, `favicon.svg`, `favicon.ico` and the icon PNGs come from
-the supplied NjiraLabs brand pack and are used unmodified. The wordmark is set
+`web/static/mark.svg` and `favicon.svg` come from the supplied NjiraLabs brand
+pack, **recoloured** from its violet gradients to the emerald palette — the
+geometry is untouched, only the gradient stops and two flat fills are remapped.
+The favicon PNGs and `.ico` are regenerated from that recoloured master, so the
+pack's own violet exports are no longer used. If the brand reverts to violet,
+restoring the original files is the whole change. The wordmark is set
 lowercase and two-tone in HTML (`njira` in ink, `labs` in violet) rather than as
 an image, so it stays crisp and selectable; the supplied horizontal lockup is
 not used in the navigation because its tagline is illegible at that size.

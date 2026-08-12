@@ -5,27 +5,31 @@
    containers. A card is used only where something really is an interface
    object; everything else is set with type and space.
 
-   Colour is semantic. Violet is the brand and the primary action. Cyan means
+   Colour is semantic. Emerald is the brand and the primary action. Teal means
    technology and movement. Amber means progress, destination, and the point of
-   no return. None of them decorate large surfaces, and the signal colours are
-   darkened from their display values so they stay readable on white. */
+   no return. None of them decorate large surfaces, and every colour that has to
+   be read is darkened from its display value so it clears AA on white. */
 
 :root {
   /* Foundation. Light by default: white page, near-black indigo type, and two
      quiet steps above it for bands and hover. */
   --base: #ffffff;
-  --surface: #f7f8fc;
-  --elevated: #eef0f8;
-  --sunken: #f7f8fc;
+  --surface: #f6faf8;
+  --elevated: #ecf5f1;
+  --sunken: #f6faf8;
 
   /* Brand */
-  --violet: #7c3aed; /* fills and primary action */
-  --violet-lift: #6d28d9; /* hover: darker on a light page */
-  --accent: #6d28d9; /* accent *text*: 7.1:1 on white */
+  --brand: #047857; /* emerald: fills and primary action, 5.5:1 with white */
+  --brand-lift: #065f46; /* hover: one step darker */
+  --accent: #047857; /* accent *text*: 5.5:1 on white */
+  /* Display-only greens. Bright emerald is 2.5:1 on white, so it appears in
+     gradients and dots and never carries text. */
+  --green-bright: #10b981;
+  --green-soft: #34d399;
 
-  /* Signals. Both are darkened from the display values so they stay legible
-     as text and hairlines on white; the raw amber is kept for fills only. */
-  --cyan: #0e7490; /* technology and movement */
+  /* Signals. Darkened from their display values so they stay legible as text
+     and hairlines on white; the raw amber is kept for fills only. */
+  --cyan: #0f766e; /* teal — technology and movement */
   --amber: #f59e0b; /* progress and destination — fills */
   --amber-text: #b45309; /* the same signal where it has to be read */
 
@@ -34,8 +38,8 @@
   --text-2: #475569;
   --text-3: #64748b;
 
-  --line: #e6e8f0;
-  --line-strong: #cbd2e0;
+  --line: #e3ebe7;
+  --line-strong: #c6d6ce;
 
   --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
@@ -132,7 +136,7 @@ code {
   top: 0;
   z-index: 100;
   padding: 0.75rem 1.25rem;
-  background: var(--violet);
+  background: var(--brand);
   color: #fff;
 }
 .skip:focus {
@@ -227,7 +231,7 @@ code {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--violet);
+  background: var(--brand);
 }
 
 .rail__note {
@@ -258,12 +262,12 @@ code {
 }
 
 .btn--primary {
-  background: var(--violet);
+  background: var(--brand);
   color: #fff;
 }
 
 .btn--primary:hover {
-  background: var(--violet-lift);
+  background: var(--brand-lift);
 }
 
 .btn--ghost {
@@ -346,7 +350,7 @@ code {
 
 .brand__word em {
   font-style: normal;
-  color: var(--violet);
+  color: var(--brand);
 }
 
 .brand__mark {
@@ -504,9 +508,9 @@ code {
 
 .hero__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-  gap: clamp(2.5rem, 6vw, 5.5rem);
-  align-items: start;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+  gap: clamp(2.5rem, 6vw, 4.5rem);
+  align-items: center;
 }
 
 .hero .label {
@@ -515,7 +519,13 @@ code {
 }
 
 .hero h1 {
-  max-width: min(17ch, 100%);
+  max-width: min(15ch, 100%);
+}
+
+/* The half of the headline the company is actually about. */
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent);
 }
 
 .hero .lede {
@@ -530,7 +540,68 @@ code {
   margin-top: 2.25rem;
 }
 
+/* The journey: one gradient path with its stages named beneath it. The labels
+   are what make it information rather than ornament. */
+.journey {
+  position: relative;
+}
+
+.journey__path {
+  width: 100%;
+  height: auto;
+}
+
+.journey__stages {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.journey__stages li {
+  display: grid;
+  gap: 0.15rem;
+  font-size: 0.85rem;
+  color: var(--text-3);
+  text-align: center;
+}
+
+.journey__stages strong {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.journey__dot {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  margin: 1.5rem auto 0.5rem;
+  border-radius: 50%;
+  background: var(--green-soft);
+}
+
+/* A hairline back up to the path, so the labels read as points on it. */
+.journey__dot::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  width: 1px;
+  height: 1.15rem;
+  background: linear-gradient(to bottom, transparent, var(--line-strong));
+}
+
+/* Amber only at the destination. */
+.journey__dot--end {
+  background: var(--amber);
+}
+
 /* Page index */
+.index-strip {
+  padding-block: 0 clamp(2.5rem, 5vw, 3.5rem);
+}
+
 .index {
   border-top: 1px solid var(--line);
 }
@@ -738,6 +809,38 @@ code {
 .contact__title {
   margin-top: 1.1rem;
   margin-bottom: 0.9rem;
+}
+
+/* Four principles closing the products section. Icon and text on a rule — a
+   row, not four boxes. */
+.values {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gap);
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+
+.values li {
+  display: grid;
+  gap: 0.9rem;
+  font-size: 0.875rem;
+  color: var(--text-3);
+}
+
+.values svg {
+  width: 22px;
+  height: 22px;
+  color: var(--accent);
+}
+
+.values strong {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
 }
 
 /* ---------- Technology ----------
@@ -1028,6 +1131,11 @@ code {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .values {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
   .capabilities li,
   .facts li {
     grid-template-columns: minmax(0, 1fr);
@@ -1135,6 +1243,10 @@ code {
   }
 
   .stages {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .values {
     grid-template-columns: minmax(0, 1fr);
   }
 

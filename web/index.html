@@ -80,7 +80,7 @@
     <div class="wrap hero__grid">
       <div>
         <span class="label">NjiraLabs</span>
-        <h1 class="h-hero">Building technology for human progress.</h1>
+        <h1 class="h-hero">Building technology for <em>human progress.</em></h1>
         <p class="lede">NjiraLabs builds intelligent products and technology systems that help people learn, build, and go further.</p>
         <div class="hero__actions">
           <a class="btn btn--primary" href="#products">Explore our products</a>
@@ -88,30 +88,57 @@
         </div>
       </div>
 
-      <nav class="index" aria-label="Page contents">
-        <a class="index__row" href="#studyzora">
-          <span class="index__num">01</span>
-          <span class="index__name">StudyZora</span>
-          <span class="index__desc">AI-powered learning</span>
-        </a>
-        <a class="index__row" href="#njira-vault">
-          <span class="index__num">02</span>
-          <span class="index__name">Njira Vault</span>
-          <span class="index__desc">Secure secret sharing</span>
-        </a>
-        <a class="index__row" href="#technology">
-          <span class="index__num">03</span>
-          <span class="index__name">Technology</span>
-          <span class="index__desc">How we build</span>
-        </a>
-        <a class="index__row" href="#about">
-          <span class="index__num">04</span>
-          <span class="index__name">About</span>
-          <span class="index__desc">Who we are</span>
-        </a>
-      </nav>
+      <!-- The journey, with its stages named. Each waypoint is a real part of
+           what NjiraLabs does, not decoration: learning is StudyZora, building
+           securely is Njira Vault and the engineering under it. -->
+      <div class="journey">
+        <svg class="journey__path" viewBox="0 0 520 300" fill="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="njira-journey" gradientUnits="userSpaceOnUse" x1="20" y1="270" x2="470" y2="50">
+              <stop offset="0" stop-color="#A7F3D0"/>
+              <stop offset="0.45" stop-color="#34D399"/>
+              <stop offset="1" stop-color="#047857"/>
+            </linearGradient>
+          </defs>
+          <path class="draw" pathLength="1"
+                d="M8 268c96 0 128-8 168-44 44-40 72-52 128-58 56-6 82-30 96-72"
+                stroke="url(#njira-journey)" stroke-width="26" stroke-linecap="round" opacity="0.9"/>
+          <circle cx="404" cy="90" r="26" fill="#047857" opacity="0.08"/>
+          <circle cx="404" cy="90" r="11" fill="#047857"/>
+        </svg>
+        <ol class="journey__stages">
+          <li><span class="journey__dot"></span><strong>Learn</strong><span>Continuously</span></li>
+          <li><span class="journey__dot"></span><strong>Build</strong><span>Securely</span></li>
+          <li><span class="journey__dot journey__dot--end"></span><strong>Go further</strong><span>Together</span></li>
+        </ol>
+      </div>
     </div>
   </section>
+
+  <nav class="section section--flush index-strip" aria-label="Page contents">
+    <div class="wrap index">
+      <a class="index__row" href="#studyzora">
+        <span class="index__num">01</span>
+        <span class="index__name">StudyZora</span>
+        <span class="index__desc">AI-powered learning</span>
+      </a>
+      <a class="index__row" href="#njira-vault">
+        <span class="index__num">02</span>
+        <span class="index__name">Njira Vault</span>
+        <span class="index__desc">Secure secret sharing</span>
+      </a>
+      <a class="index__row" href="#technology">
+        <span class="index__num">03</span>
+        <span class="index__name">Technology</span>
+        <span class="index__desc">How we build</span>
+      </a>
+      <a class="index__row" href="#about">
+        <span class="index__num">04</span>
+        <span class="index__name">About</span>
+        <span class="index__desc">Who we are</span>
+      </a>
+    </div>
+  </nav>
 
   <!-- Products -->
   <section class="section" id="products">
@@ -205,6 +232,32 @@
             <a class="btn btn--primary" href="/vault">Open Njira Vault</a>
           </div>
         </article>
+        <ul class="values">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m12 2.5 8.5 4.8v9.4L12 21.5 3.5 16.7V7.3z"/><path d="M12 12.1v9.4M12 12.1l8.5-4.8M12 12.1 3.5 7.3"/>
+            </svg>
+            <div><strong>Purpose-built products</strong>We build products that solve real problems rather than demonstrate technology.</div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2.5 20 5.7v6c0 4.7-3.3 8.4-8 9.8-4.7-1.4-8-5.1-8-9.8v-6z"/>
+            </svg>
+            <div><strong>Security by design</strong>Security and privacy are decided at the start, not bolted on afterwards.</div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="m8.5 8-4.5 4 4.5 4M15.5 8l4.5 4-4.5 4"/>
+            </svg>
+            <div><strong>Engineering we stand behind</strong>Clean code, systems that stay up, and interfaces we would want to use.</div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="9" cy="8.5" r="3.2"/><path d="M2.8 20c.6-3.4 3.1-5.4 6.2-5.4s5.6 2 6.2 5.4"/><path d="M16.5 6.2a3.2 3.2 0 0 1 0 5.9M18.4 14.9c2 .8 3.4 2.6 3.8 5.1"/>
+            </svg>
+            <div><strong>Human progress</strong>Everything we build is in service of learning, building, and going further.</div>
+          </li>
+        </ul>
       </div>
     </div>
   </section>

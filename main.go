@@ -41,7 +41,7 @@ func loadConfig() Config {
 		Addr:         ":" + env("PORT", "8080"),
 		BaseURL:      strings.TrimRight(env("BASE_URL", "http://localhost:8080"), "/"),
 		StudyZoraURL: strings.TrimSpace(os.Getenv("STUDYZORA_URL")),
-		ContactEmail: env("CONTACT_EMAIL", "hello@njiralab.com"),
+		ContactEmail: env("CONTACT_EMAIL", "hello@njiralabs.com"),
 		TrustProxy:   env("TRUST_PROXY", "false") == "true",
 		EnableHSTS:   env("ENABLE_HSTS", "false") == "true",
 	}
