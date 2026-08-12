@@ -1,12 +1,12 @@
 /* NjiraLabs design system
    -----------------------
    Bright, white-first, Inter. Structure comes from generous whitespace and 1px
-   #E5E7EB dividers; shadows stay almost invisible except under product
-   screenshots.
+   #EBEBEB hairlines; controls are pills, surfaces keep generous rectangular
+   corners, and shadows are absent except under product screenshots.
 
    Colour has semantic ownership and the three never mix:
      NjiraLabs   green   — company chrome, navigation, primary actions
-     StudyZora   purple  — inside the StudyZora product
+     StudyBora   purple  — inside the StudyBora product
      Njira Vault orange  — inside Njira Vault
    Products own their accent by rebinding --accent on their wrapper, so nothing
    inside names a colour directly and none can leak out.
@@ -38,7 +38,7 @@
   --green-deep: #15803d; /* readable: 5.0:1 on white */
   --green-tint: #f0fdf4;
 
-  /* StudyZora */
+  /* StudyBora */
   --purple: #7c3aed;
   --purple-deep: #6d28d9;
   --purple-tint: #faf8ff;
@@ -332,10 +332,20 @@ code {
   height: var(--nav-h);
   display: flex;
   align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+
+/* The blur lives on a pseudo-element, not on .nav itself: backdrop-filter
+   makes an element the containing block for its fixed-position descendants,
+   which would trap the mobile drawer inside the 68px header. */
+.nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: saturate(180%) blur(12px);
   -webkit-backdrop-filter: saturate(180%) blur(12px);
-  border-bottom: 1px solid var(--border);
 }
 
 .nav__inner {
@@ -704,8 +714,8 @@ code {
   overflow: hidden;
 }
 
-.showcase--studyzora,
-.product--studyzora {
+.showcase--studybora,
+.product--studybora {
   --accent: var(--purple);
   --accent-deep: var(--purple-deep);
   --accent-tint: var(--purple-tint);

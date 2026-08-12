@@ -9,7 +9,7 @@ than Redis.
 ```
 NjiraLabs
 ├── Products
-│   ├── StudyZora    — AI-powered learning (presented here, built elsewhere)
+│   ├── StudyBora    — AI-powered learning (presented here, built elsewhere)
 │   └── Njira Vault  — secure secret sharing (built and served from this repo)
 └── Technology
     ├── Cloud & infrastructure
@@ -56,7 +56,7 @@ go run .
 | `BASE_URL` | `http://localhost:8080` | Public origin. Used for canonical URLs, the sitemap, and Njira Vault links. **Set this in production.** |
 | `REDIS_URL` | `localhost:6379` | Accepts `host:port` or a full `redis://` URL |
 | `REDIS_PASSWORD`, `REDIS_DB` | — | Used only with the `host:port` form |
-| `STUDYZORA_URL` | unset | When unset, the StudyZora call to action points at the contact section instead of inventing a destination |
+| `STUDYBORA_URL` | unset | When unset, the StudyBora call to action points at the contact section instead of inventing a destination |
 | `CONTACT_EMAIL` | `hello@njiralabs.com` | Address shown in the contact section and used by the contact form's `mailto:` |
 | `ALLOWED_ORIGINS` | unset | Comma-separated origins permitted to call the API cross-origin. Unset means same-origin only; `*` is ignored on purpose |
 | `TRUST_PROXY` | `false` | Set to `true` only behind a proxy that overwrites `X-Forwarded-For`, otherwise clients can spoof their rate-limit identity |
@@ -123,10 +123,10 @@ The palette is light and colour has semantic ownership:
 | | Colour | Where it may appear |
 | --- | --- | --- |
 | NjiraLabs | green `#16A34A` | company chrome, navigation, primary calls to action |
-| StudyZora | purple `#7C3AED` | inside the StudyZora product only |
+| StudyBora | purple `#7C3AED` | inside the StudyBora product only |
 | Njira Vault | orange `#F59E0B` | inside Njira Vault only, plus the journey's arrival marker |
 
-Products own their accent by rebinding `--accent` on `.product--studyzora` /
+Products own their accent by rebinding `--accent` on `.product--studybora` /
 `.product--vault` (and `body.vault`), so nothing inside names purple or orange
 directly and neither can leak into the rest of the page. The rebinding sets
 `--accent`, `--accent-deep` and `--accent-tint` together; missing one is how
@@ -172,7 +172,7 @@ to be invented.
 ### Brand assets
 
 The icons and favicons come from the supplied NjiraLabs brand pack and are used
-unmodified: `mark.svg` (green, company), `mark-studyzora.svg` (purple),
+unmodified: `mark.svg` (green, company), `mark-studybora.svg` (purple),
 `mark-vault.svg` (orange), plus `favicon.svg`, `favicon.ico` and the icon PNGs.
 
 The wordmark is set in Inter in HTML rather than used as an image. The pack's
@@ -194,14 +194,14 @@ BASE_URL=https://njiralab.com go run .          # in one shell
 node tools/capture-product-shots.mjs            # in another (needs Playwright)
 ```
 
-**StudyZora has no screenshot in this repository.** Rather than mock up an
+**StudyBora has no screenshot in this repository.** Rather than mock up an
 interface we do not have, that section falls back to a typographic treatment.
-Drop a real capture at `web/static/studyzora.png` and it is picked up
+Drop a real capture at `web/static/studybora.png` and it is picked up
 automatically on the next build — no template change needed.
 
 ## Naming
 
-**StudyZora** keeps its own name — it is distinctive, it names its category, and
+**StudyBora** keeps its own name — it is distinctive, it names its category, and
 it is a separate product with its own identity. **Njira Vault** takes the parent
 prefix because "Vault" alone collides with a well-known product in the same
 category; the short root travels better than the full company name.

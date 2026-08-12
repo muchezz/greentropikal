@@ -29,7 +29,7 @@ type Config struct {
 	RedisAddr      string
 	RedisPassword  string
 	RedisDB        int
-	StudyZoraURL   string
+	StudyBoraURL   string
 	ContactEmail   string
 	AllowedOrigins []string
 	TrustProxy     bool
@@ -40,7 +40,7 @@ func loadConfig() Config {
 	cfg := Config{
 		Addr:         ":" + env("PORT", "8080"),
 		BaseURL:      strings.TrimRight(env("BASE_URL", "http://localhost:8080"), "/"),
-		StudyZoraURL: strings.TrimSpace(os.Getenv("STUDYZORA_URL")),
+		StudyBoraURL: strings.TrimSpace(os.Getenv("STUDYBORA_URL")),
 		ContactEmail: env("CONTACT_EMAIL", "hello@njiralabs.com"),
 		TrustProxy:   env("TRUST_PROXY", "false") == "true",
 		EnableHSTS:   env("ENABLE_HSTS", "false") == "true",
@@ -89,8 +89,8 @@ func main() {
 	})
 	defer rdb.Close()
 
-	if cfg.StudyZoraURL == "" {
-		log.Print("notice: STUDYZORA_URL is not set — the StudyZora call to action falls back to the contact section")
+	if cfg.StudyBoraURL == "" {
+		log.Print("notice: STUDYBORA_URL is not set — the StudyBora call to action falls back to the contact section")
 	}
 
 	site, err := newSite(cfg)

@@ -50,10 +50,10 @@
           </svg>
         </button>
         <div class="dropdown__panel" id="products-menu">
-          <a class="dropdown__item" href="#studyzora">
-            <img src="{{ asset "mark-studyzora.svg" }}" alt="" width="26" height="26">
+          <a class="dropdown__item" href="#studybora">
+            <img src="{{ asset "mark-studybora.svg" }}" alt="" width="26" height="26">
             <span>
-              <strong>StudyZora</strong>
+              <strong>StudyBora</strong>
               <span>AI-powered learning</span>
             </span>
           </a>
@@ -139,9 +139,9 @@
 
       <div class="showcases">
 
-        <!-- StudyZora — purple, and purple appears nowhere else except its own
+        <!-- StudyBora — purple, and purple appears nowhere else except its own
              milestone in the hero. -->
-        <article class="showcase showcase--studyzora reveal" id="studyzora">
+        <article class="showcase showcase--studybora reveal" id="studybora">
           <div class="showcase__text">
             <p class="showcase__num">01</p>
             <div class="showcase__name">
@@ -150,27 +150,27 @@
                   <path d="M12 3 3 7.5 12 12l9-4.5z"/><path d="m3 12 9 4.5 9-4.5"/><path d="m3 16.5 9 4.5 9-4.5"/>
                 </svg>
               </span>
-              <h3 class="h3">StudyZora</h3>
+              <h3 class="h3">StudyBora</h3>
             </div>
             <p class="showcase__kicker">AI-powered learning platform</p>
             <p class="showcase__desc">Turn learning materials into active, personalized study experiences.</p>
             <div class="showcase__cta">
-              {{ if .HasStudyZoraLink }}
-              <a class="btn btn--outline" href="{{ .StudyZoraURL }}" target="_blank" rel="noopener">Explore StudyZora <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+              {{ if .HasStudyBoraLink }}
+              <a class="btn btn--outline" href="{{ .StudyBoraURL }}" target="_blank" rel="noopener">Explore StudyBora <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
               {{ else }}
-              <a class="btn btn--outline" href="#contact">Explore StudyZora <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+              <a class="btn btn--outline" href="#contact">Explore StudyBora <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
               {{ end }}
             </div>
           </div>
 
           <div class="showcase__media">
-            {{ if .HasStudyZoraShot }}
-            <img class="showcase__shot" src="{{ asset "studyzora.png" }}"
-                 alt="The StudyZora interface" loading="lazy" decoding="async">
+            {{ if .HasStudyBoraShot }}
+            <img class="showcase__shot" src="{{ asset "studybora.png" }}"
+                 alt="The StudyBora interface" loading="lazy" decoding="async">
             {{ else }}
-            <!-- No StudyZora capture has been supplied. Rather than invent a
+            <!-- No StudyBora capture has been supplied. Rather than invent a
                  dashboard, what the product does is set as type. Drop a real
-                 screenshot at web/static/studyzora.png and it replaces this. -->
+                 screenshot at web/static/studybora.png and it replaces this. -->
             <ol class="stages">
               <li>
                 <span class="stages__num">1</span>
@@ -184,7 +184,7 @@
                 <span class="stages__num">3</span>
                 <span><strong>Master</strong><span>Study sessions land where you are still weak.</span></span>
               </li>
-              <li class="stages__note">Interface capture coming from the StudyZora team.</li>
+              <li class="stages__note">Interface capture coming from the StudyBora team.</li>
             </ol>
             {{ end }}
           </div>
@@ -385,7 +385,7 @@
             <label for="cf-topic">What is this about?</label>
             <select id="cf-topic" name="topic">
               <option value="Product engineering">Product engineering</option>
-              <option value="StudyZora">StudyZora</option>
+              <option value="StudyBora">StudyBora</option>
               <option value="Njira Vault">Njira Vault</option>
               <option value="Cloud &amp; infrastructure">Cloud &amp; infrastructure</option>
               <option value="Security">Security</option>
@@ -417,7 +417,7 @@
       <div>
         <h3>Products</h3>
         <ul>
-          <li><a href="#studyzora">StudyZora</a></li>
+          <li><a href="#studybora">StudyBora</a></li>
           <li><a href="/vault">Njira Vault</a></li>
         </ul>
       </div>

@@ -18,7 +18,7 @@ services:
       BASE_URL: "http://localhost:${HOST_PORT:-8080}"
       REDIS_URL: "redis:6379"
       # Fill these in once the destinations exist.
-      # STUDYZORA_URL: "https://…"
+      # STUDYBORA_URL: "https://…"
       # CONTACT_EMAIL: "hello@…"
       # Behind a TLS-terminating proxy, set both of these:
       # ENABLE_HSTS: "true"
