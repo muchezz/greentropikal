@@ -91,6 +91,10 @@ type pageData struct {
 	// case the call to action points at the on-page section rather than an
 	// invented destination.
 	HasStudyZoraLink bool
+	// HasStudyZoraShot is true only when a real screenshot has been dropped at
+	// web/static/studyzora.png. We show the product or we show type — we never
+	// mock up an interface we do not have.
+	HasStudyZoraShot bool
 }
 
 func newSite(cfg Config) (*site, error) {
@@ -160,6 +164,7 @@ func (s *site) data(title, desc, canonicalPath string) pageData {
 		ContactEmail:     s.cfg.ContactEmail,
 		Year:             time.Now().Year(),
 		HasStudyZoraLink: studyzora != "",
+		HasStudyZoraShot: s.assets["studyzora.png"] != nil,
 	}
 }
 

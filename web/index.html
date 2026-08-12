@@ -55,7 +55,7 @@
             <strong>StudyZora</strong>
             <span>AI-powered learning</span>
           </a>
-          <a class="dropdown__item" href="/vault">
+          <a class="dropdown__item" href="#njira-vault">
             <strong>Njira Vault</strong>
             <span>Secure secret sharing</span>
           </a>
@@ -76,292 +76,257 @@
 
 <main id="main">
 
-  <!-- Hero -->
+  <!-- Hero. No illustration: the right column is an index of what follows,
+       which is real information and works as navigation. -->
   <section class="hero">
     <div class="wrap hero__grid">
       <div>
-        <p class="eyebrow">NjiraLab</p>
-        <h1>Building technology for human progress.</h1>
-        <p class="lead">NjiraLab builds intelligent products and technology systems that help people learn, build, and go further.</p>
+        <span class="label">NjiraLab</span>
+        <h1 class="h-hero">Building technology for human progress.</h1>
+        <p class="lede">NjiraLab builds intelligent products and technology systems that help people learn, build, and go further.</p>
         <div class="hero__actions">
           <a class="btn btn--primary" href="#products">Explore our products</a>
           <a class="btn btn--ghost" href="#contact">Work with us</a>
         </div>
-        <p class="hero__products">
-          <span>Products</span>
-          <a href="#studyzora">StudyZora</a>
-          <a href="/vault">Njira Vault</a>
-        </p>
       </div>
 
-      <!-- The brand concept, drawn: the N's second upstroke does not stop at the
-           letter — it leaves the mark and becomes the path, rising through
-           waypoints to a destination. Violet through the letter, cyan along the
-           journey, amber only where it arrives. -->
-      <svg class="hero__art" viewBox="0 0 480 440" fill="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="njira-path" gradientUnits="userSpaceOnUse"
-                          x1="64" y1="396" x2="410" y2="44">
-            <stop offset="0" stop-color="#7C3AED"/>
-            <stop offset="0.55" stop-color="#7C3AED"/>
-            <stop offset="1" stop-color="#22D3EE"/>
-          </linearGradient>
-        </defs>
-
-        <path class="draw" pathLength="1"
-              d="M64 396V226l106 140V226c0-50 36-74 88-76 54-2 80-24 88-58 8-30 33-46 65-48"
-              stroke="url(#njira-path)" stroke-width="4"
-              stroke-linecap="round" stroke-linejoin="round"/>
-
-        <g class="pulse">
-          <!-- where the letter ends and the journey begins -->
-          <circle cx="170" cy="226" r="5" fill="#7C3AED"/>
-          <!-- waypoints: violet, then cyan as the path picks up movement -->
-          <circle cx="258" cy="150" r="4.5" fill="#7C3AED"/>
-          <circle cx="346" cy="92" r="4.5" fill="#22D3EE"/>
-
-          <!-- destination reached -->
-          <circle cx="430" cy="44" r="13" stroke="#F59E0B" stroke-opacity="0.35" stroke-width="1"/>
-          <circle cx="430" cy="44" r="6.5" fill="#F59E0B"/>
-        </g>
-      </svg>
-    </div>
-  </section>
-
-  <!-- Company structure -->
-  <section class="structure">
-    <div class="wrap structure__grid">
-      <div class="structure__col">
-        <h2>Products</h2>
-        <div class="structure__list">
-          <a class="chip chip--product" href="#studyzora">StudyZora</a>
-          <a class="chip chip--product" href="/vault">Njira Vault</a>
-        </div>
-      </div>
-      <div class="structure__col structure__col--tech">
-        <h2>Technology</h2>
-        <div class="structure__list">
-          <a class="chip" href="#technology">Cloud &amp; Infrastructure</a>
-          <a class="chip" href="#technology">Platform Engineering</a>
-          <a class="chip" href="#technology">Security</a>
-          <a class="chip" href="#technology">AI Systems</a>
-          <a class="chip" href="#technology">Distributed Systems</a>
-        </div>
-      </div>
+      <nav class="index" aria-label="Page contents">
+        <a class="index__row" href="#studyzora">
+          <span class="index__num">01</span>
+          <span class="index__name">StudyZora</span>
+          <span class="index__desc">AI-powered learning</span>
+        </a>
+        <a class="index__row" href="#njira-vault">
+          <span class="index__num">02</span>
+          <span class="index__name">Njira Vault</span>
+          <span class="index__desc">Secure secret sharing</span>
+        </a>
+        <a class="index__row" href="#technology">
+          <span class="index__num">03</span>
+          <span class="index__name">Technology</span>
+          <span class="index__desc">How we build</span>
+        </a>
+        <a class="index__row" href="#about">
+          <span class="index__num">04</span>
+          <span class="index__name">About</span>
+          <span class="index__desc">Who we are</span>
+        </a>
+      </nav>
     </div>
   </section>
 
   <!-- Products -->
   <section class="section" id="products">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Products</p>
-        <h2>Products built by NjiraLab</h2>
-        <p>Each product stands on its own. Together they share the same engineering foundation.</p>
+    <div class="wrap rail">
+      <div class="rail__side">
+        <h2 class="label">Products</h2>
+        <p class="rail__note">Two products, built and run by us.</p>
       </div>
 
-      <!-- StudyZora -->
-      <article class="product reveal" id="studyzora">
-        <div>
-          <h3 class="product__name">StudyZora</h3>
-          <p class="product__kicker">AI-powered learning platform</p>
-          <p class="product__desc">Turn learning materials into active, personalized study experiences.</p>
-          <ul class="product__points">
-            <li>Learning material becomes something you practice, not something you re-read</li>
-            <li>Study sessions that adapt to what you have and have not understood</li>
-            <li>Built on NjiraLab's AI and platform engineering</li>
-          </ul>
-          <div class="product__actions">
+      <div>
+        <!-- StudyZora: a wide typographic block. -->
+        <article class="product reveal" id="studyzora">
+          <div class="product__head">
+            <span class="product__num">01</span>
+            <h3 class="h-product">StudyZora</h3>
+            <p class="product__kicker">AI-powered learning platform</p>
+          </div>
+          <p class="product__lede">Turn learning materials into active, personalized study experiences.</p>
+
+          {{ if .HasStudyZoraShot }}
+          <figure class="shots">
+            <img class="shot" src="{{ asset "studyzora.png" }}" alt="The StudyZora interface" loading="lazy" decoding="async">
+          </figure>
+          {{ else }}
+          <!-- No StudyZora screenshot has been supplied. Rather than mock up an
+               interface we do not have, the stages are set as type. Drop a real
+               capture at web/static/studyzora.png and it replaces this. -->
+          <ol class="stages">
+            <li>
+              <span class="stages__num">01</span>
+              <h4>Understand</h4>
+              <p>Work through your own material.</p>
+            </li>
+            <li>
+              <span class="stages__num">02</span>
+              <h4>Practice</h4>
+              <p>Active recall instead of passive reading.</p>
+            </li>
+            <li>
+              <span class="stages__num">03</span>
+              <h4>Master</h4>
+              <p>Attention lands where it is still weak.</p>
+            </li>
+          </ol>
+          {{ end }}
+
+          <div class="product__cta">
             {{ if .HasStudyZoraLink }}
             <a class="btn btn--primary" href="{{ .StudyZoraURL }}" target="_blank" rel="noopener">Explore StudyZora</a>
             {{ else }}
-            <a class="btn btn--ghost" href="#contact">Talk to us about StudyZora</a>
+            <a class="link" href="#contact">Talk to us about StudyZora</a>
             {{ end }}
           </div>
-        </div>
-        <div class="product__media">
-          <div class="panel">
-            <p class="panel__label"><span>StudyZora</span><span>Learning path</span></p>
-            <div class="stack">
-              <div class="stack__row">
-                <span class="stack__num">1</span>
-                <span><strong>Understand</strong><span>Work through your own material</span></span>
-              </div>
-              <div class="stack__row">
-                <span class="stack__num">2</span>
-                <span><strong>Practice</strong><span>Active recall instead of passive reading</span></span>
-              </div>
-              <div class="stack__row">
-                <span class="stack__num">3</span>
-                <span><strong>Master</strong><span>Focus lands where it is still weak</span></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- Njira Vault -->
-      <article class="product reveal" id="vault">
-        <div>
-          <h3 class="product__name">Njira Vault</h3>
-          <p class="product__kicker">Secure secret sharing</p>
-          <p class="product__desc">Create and share sensitive information through temporary, controlled access — without leaving a permanent copy in ordinary messages.</p>
+        <!-- Njira Vault: leads with the running product. -->
+        <article class="product reveal" id="njira-vault">
+          <div class="product__head">
+            <span class="product__num">02</span>
+            <h3 class="h-product">Njira Vault</h3>
+            <p class="product__kicker">Secure secret sharing</p>
+          </div>
+          <p class="product__lede">Create and share sensitive information through temporary, controlled access.</p>
+
+          <div class="shots shots--wide">
+            <figure>
+              <picture>
+                <source media="(max-width: 700px)" srcset="{{ asset "shot-vault-create-narrow.png" }}" width="788" height="1276">
+                <img class="shot" src="{{ asset "shot-vault-create.png" }}" width="1520" height="1090"
+                     alt="The Njira Vault create form: a field for the secret, a type, an expiry and a view limit." loading="lazy" decoding="async">
+              </picture>
+              <figcaption>Write the secret, choose how long it lives.</figcaption>
+            </figure>
+            <figure>
+              <picture>
+                <source media="(max-width: 700px)" srcset="{{ asset "shot-vault-link-narrow.png" }}" width="788" height="776">
+                <img class="shot" src="{{ asset "shot-vault-link.png" }}" width="1520" height="628"
+                     alt="Njira Vault after creating a secret, showing the generated link, its expiry and view limit." loading="lazy" decoding="async">
+              </picture>
+              <figcaption>The key sits after the <code>#</code> — we never store it.</figcaption>
+            </figure>
+          </div>
+
           <ul class="product__points">
-            <li>Encrypted with AES-256-GCM; the key travels in the link, not in our database</li>
+            <li>AES-256-GCM, with a key that travels in the link rather than our database</li>
             <li>One-time links, or a view limit you choose</li>
             <li>Automatic expiry from five minutes to thirty days</li>
           </ul>
-          <div class="product__actions">
+
+          <div class="product__cta">
             <a class="btn btn--primary" href="/vault">Open Njira Vault</a>
           </div>
-        </div>
-        <div class="product__media">
-          <div class="panel panel--vault">
-            <p class="panel__label"><span>Njira Vault</span><span>One-time link</span></p>
-            <div class="flow">
-              <p class="flow__step"><span class="flow__dot"></span>Create a secret</p>
-              <p class="flow__step"><span class="flow__dot"></span>Set expiry and view limit</p>
-              <p class="flow__step"><span class="flow__dot"></span>Share the link</p>
-              <p class="flow__step"><span class="flow__dot"></span>Opened once, then destroyed</p>
-            </div>
-            <p class="flow__link">/s/&hellip;#&hellip;</p>
-          </div>
-        </div>
-      </article>
+        </article>
+      </div>
     </div>
   </section>
 
   <!-- Technology -->
-  <section class="section" id="technology">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Technology</p>
-        <h2>Technology we build</h2>
-        <p>Behind every product is infrastructure designed for reliability, security, and scale.</p>
+  <section class="section section--band" id="technology">
+    <div class="wrap rail">
+      <div class="rail__side">
+        <h2 class="label">Technology</h2>
+        <p class="rail__note">The engineering underneath the products.</p>
       </div>
 
-      <div class="tech-grid reveal">
-        <div class="tech">
-          <svg class="tech__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 2.5 21 7l-9 4.5L3 7z"/><path d="M3 12.5 12 17l9-4.5"/><path d="M3 17.5 12 22l9-4.5"/>
-          </svg>
-          <h3>Cloud &amp; Infrastructure</h3>
-          <p>Reliable cloud infrastructure and production systems.</p>
-        </div>
-        <div class="tech">
-          <svg class="tech__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="2.5" y="4" width="19" height="16" rx="3"/><path d="m7 10 3 2.5L7 15M13.5 15H17"/>
-          </svg>
-          <h3>Platform Engineering</h3>
-          <p>Deployment platforms and developer infrastructure that make teams faster.</p>
-        </div>
-        <div class="tech">
-          <svg class="tech__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 2.5 20 5.7v6c0 4.7-3.3 8.4-8 9.8-4.7-1.4-8-5.1-8-9.8v-6z"/>
-          </svg>
-          <h3>Security</h3>
-          <p>Security-first infrastructure, secrets management, and hardening.</p>
-        </div>
-        <div class="tech">
-          <svg class="tech__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="5" cy="6" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="18" cy="12" r="2.6"/><path d="m7.1 7.2 8.5 3.6M7.1 16.8l8.5-3.6"/>
-          </svg>
-          <h3>AI Systems</h3>
-          <p>AI-powered applications, automation, and intelligent workflows.</p>
-        </div>
-        <div class="tech">
-          <svg class="tech__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="m12 2.5 7.5 4.2v8.6L12 19.5 4.5 15.3V6.7z"/><path d="M12 11.2v8.3M12 11.2l7.5-4.5M12 11.2 4.5 6.7"/>
-          </svg>
-          <h3>Distributed Systems</h3>
-          <p>Kubernetes, containerized workloads, automation, and scalable backend systems.</p>
-        </div>
+      <div class="reveal">
+        <h3 class="h-section">How we build</h3>
+        <p class="prose h-section__sub">Behind every product is infrastructure designed for reliability, security, and scale.</p>
+        <ul class="capabilities">
+          <li>
+            <h3>Cloud &amp; Infrastructure</h3>
+            <p>Reliable cloud infrastructure and production systems.</p>
+          </li>
+          <li>
+            <h3>Platform Engineering</h3>
+            <p>Deployment platforms and developer infrastructure that make teams faster.</p>
+          </li>
+          <li>
+            <h3>Security</h3>
+            <p>Security-first infrastructure, secrets management, and hardening.</p>
+          </li>
+          <li>
+            <h3>AI Systems</h3>
+            <p>AI-powered applications, automation, and intelligent workflows.</p>
+          </li>
+          <li>
+            <h3>Distributed Systems</h3>
+            <p>Kubernetes, containerized workloads, and scalable backend systems.</p>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- Philosophy -->
-  <section class="section philosophy">
-    <div class="wrap reveal">
-      <h2>Technology should create opportunity.</h2>
-      <p>We believe technology is most valuable when it expands what people can learn, build, and achieve.</p>
-      <svg class="philosophy__path" viewBox="0 0 420 24" fill="none" aria-hidden="true">
-        <path d="M8 12h404" stroke="#A78BFA" stroke-opacity="0.2" stroke-width="1"/>
-        <circle cx="8" cy="12" r="3.5" fill="#7C3AED"/>
-        <circle cx="140" cy="12" r="3.5" fill="#7C3AED"/>
-        <circle cx="272" cy="12" r="3.5" fill="#22D3EE"/>
-        <circle cx="410" cy="12" r="5" fill="#F59E0B"/>
-      </svg>
+  <!-- Philosophy: the one place the page changes voice. -->
+  <section class="philosophy">
+    <div class="wrap">
+      <div class="philosophy__inner reveal">
+        <h2>Technology should create opportunity.</h2>
+        <p>We believe technology is most valuable when it expands what people can learn, build, and achieve.</p>
+      </div>
     </div>
   </section>
 
   <!-- About -->
   <section class="section" id="about">
-    <div class="wrap about">
-      <div class="about__body reveal">
-        <p class="eyebrow">About</p>
-        <h2>Why NjiraLab</h2>
-        <p class="lead">NjiraLab exists to build technology that creates useful paths forward — from better ways to learn, to better ways to build and operate modern systems.</p>
-        <p class="muted">Njira means path. We started from engineering work on production infrastructure, and we build products on top of the same foundation. Founded in Nairobi, Kenya, building for anyone who can use the work.</p>
+    <div class="wrap rail">
+      <div class="rail__side">
+        <h2 class="label">About</h2>
+        <p class="rail__note">Founded in Nairobi. Building for anyone who can use the work.</p>
       </div>
-      <ul class="about__list reveal">
-        <li><strong>Product development</strong><span>We design, build, and run our own products end to end.</span></li>
-        <li><strong>AI</strong><span>Applied AI inside real products, not demos.</span></li>
-        <li><strong>Cloud infrastructure</strong><span>Production environments built to stay up and stay affordable.</span></li>
-        <li><strong>Security</strong><span>Secrets handling, hardening, and sensible defaults.</span></li>
-        <li><strong>Automation</strong><span>Pipelines and tooling that remove repeated manual work.</span></li>
-      </ul>
+
+      <div class="reveal">
+        <h3 class="h-section">Why NjiraLab</h3>
+        <p class="statement">NjiraLab exists to build technology that creates useful paths forward — from better ways to learn, to better ways to build and operate modern systems.</p>
+        <p class="prose">Njira means path. We started from engineering work on production infrastructure, and we build products on top of the same foundation.</p>
+        <ul class="facts">
+          <li><strong>Product development</strong><span>We design, build, and run our own products end to end.</span></li>
+          <li><strong>AI</strong><span>Applied AI inside real products, not demos.</span></li>
+          <li><strong>Cloud infrastructure</strong><span>Production environments built to stay up and stay affordable.</span></li>
+          <li><strong>Security</strong><span>Secrets handling, hardening, and sensible defaults.</span></li>
+          <li><strong>Automation</strong><span>Pipelines and tooling that remove repeated manual work.</span></li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <!-- Contact -->
-  <section class="section" id="contact">
-    <div class="wrap">
-      <div class="contact reveal">
-        <div>
-          <p class="eyebrow">Contact</p>
-          <h2>Have something worth building?</h2>
-          <p class="lead">Let's build technology that moves people forward.</p>
-          <div class="contact__meta">
-            <div>
-              <strong>Email</strong>
-              <p><a href="mailto:{{ .ContactEmail }}">{{ .ContactEmail }}</a></p>
-            </div>
-            <div>
-              <strong>Based in</strong>
-              <p>Nairobi, Kenya — working with teams anywhere.</p>
-            </div>
+  <section class="section section--band" id="contact">
+    <div class="wrap contact__grid">
+      <div>
+        <span class="label">Contact</span>
+        <h2 class="h-section contact__title">Have something worth building?</h2>
+        <p class="lede">Let's build technology that moves people forward.</p>
+        <dl class="contact__meta">
+          <div>
+            <dt>Email</dt>
+            <dd><a href="mailto:{{ .ContactEmail }}">{{ .ContactEmail }}</a></dd>
           </div>
-        </div>
-
-        <form id="contact-form" novalidate>
-          <div class="field">
-            <label for="cf-name">Name</label>
-            <input type="text" id="cf-name" name="name" autocomplete="name" required>
+          <div>
+            <dt>Based in</dt>
+            <dd>Nairobi, Kenya — working with teams anywhere.</dd>
           </div>
-          <div class="field">
-            <label for="cf-email">Email</label>
-            <input type="email" id="cf-email" name="email" autocomplete="email" required>
-          </div>
-          <div class="field">
-            <label for="cf-topic">What is this about?</label>
-            <select id="cf-topic" name="topic">
-              <option value="Product engineering">Product engineering</option>
-              <option value="StudyZora">StudyZora</option>
-              <option value="Njira Vault">Njira Vault</option>
-              <option value="Cloud &amp; infrastructure">Cloud &amp; infrastructure</option>
-              <option value="Security">Security</option>
-              <option value="Something else">Something else</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="cf-message">Message</label>
-            <textarea id="cf-message" name="message" placeholder="What are you trying to build?" required></textarea>
-          </div>
-          <button type="submit" class="btn btn--primary btn--wide" data-contact-email="{{ .ContactEmail }}">Work with NjiraLab</button>
-          <p class="form-note">This opens your email client. You can also write to <a href="mailto:{{ .ContactEmail }}">{{ .ContactEmail }}</a> directly.</p>
-        </form>
+        </dl>
       </div>
+
+      <form id="contact-form" novalidate>
+        <div class="field">
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" name="name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="cf-topic">What is this about?</label>
+          <select id="cf-topic" name="topic">
+            <option value="Product engineering">Product engineering</option>
+            <option value="StudyZora">StudyZora</option>
+            <option value="Njira Vault">Njira Vault</option>
+            <option value="Cloud &amp; infrastructure">Cloud &amp; infrastructure</option>
+            <option value="Security">Security</option>
+            <option value="Something else">Something else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" placeholder="What are you trying to build?" required></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary btn--wide" data-contact-email="{{ .ContactEmail }}">Work with NjiraLab</button>
+        <p class="form-note">This opens your email client. You can also write to <a href="mailto:{{ .ContactEmail }}">{{ .ContactEmail }}</a> directly.</p>
+      </form>
     </div>
   </section>
 </main>

@@ -123,7 +123,7 @@
     </div>
   </div>
 
-  <div class="card">
+  <section class="note">
     <h2>How it works</h2>
     <ol class="steps">
       <li>You write the secret and choose how long it lives and how many times it can be opened.</li>
@@ -131,11 +131,11 @@
       <li>You get a link. The key sits after the <code>#</code>, which browsers never send to a server.</li>
       <li>The recipient opens the link once. When the view limit or the expiry is reached, the record is deleted.</li>
     </ol>
-  </div>
+  </section>
 
-  <div class="card">
+  <section class="note">
     <h2>What this does, precisely</h2>
-    <p class="card__lede">The claims below describe how Njira Vault is actually built. Nothing more is implied.</p>
+    <p class="note__lede">The claims below describe how Njira Vault is actually built. Nothing more is implied.</p>
     <div class="claims">
       <div>
         <strong>AES-256-GCM encryption</strong>
@@ -162,7 +162,7 @@
         This is not end-to-end encryption: the plaintext and the key both pass through our server while a secret is created and while it is read. Anyone holding the complete link can open the secret, and the link stays in browser history until it is cleared. Use it for temporary handoffs, not as long-term storage.
       </div>
     </div>
-  </div>
+  </section>
 </main>
 
 <footer class="vault-foot">

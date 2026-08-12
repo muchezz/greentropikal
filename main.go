@@ -41,9 +41,7 @@ func loadConfig() Config {
 		Addr:         ":" + env("PORT", "8080"),
 		BaseURL:      strings.TrimRight(env("BASE_URL", "http://localhost:8080"), "/"),
 		StudyZoraURL: strings.TrimSpace(os.Getenv("STUDYZORA_URL")),
-		// Carried over from the previous site rather than invented. Override
-		// with CONTACT_EMAIL once an NjiraLab address exists.
-		ContactEmail: env("CONTACT_EMAIL", "hello@greentropik.com"),
+		ContactEmail: env("CONTACT_EMAIL", "hello@njiralab.com"),
 		TrustProxy:   env("TRUST_PROXY", "false") == "true",
 		EnableHSTS:   env("ENABLE_HSTS", "false") == "true",
 	}

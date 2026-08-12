@@ -57,7 +57,7 @@ go run .
 | `REDIS_URL` | `localhost:6379` | Accepts `host:port` or a full `redis://` URL |
 | `REDIS_PASSWORD`, `REDIS_DB` | — | Used only with the `host:port` form |
 | `STUDYZORA_URL` | unset | When unset, the StudyZora call to action points at the contact section instead of inventing a destination |
-| `CONTACT_EMAIL` | `hello@greentropik.com` | Carried over from the previous site — **update this to an NjiraLab address** once the domain is live |
+| `CONTACT_EMAIL` | `hello@njiralab.com` | Address shown in the contact section and used by the contact form's `mailto:` |
 | `ALLOWED_ORIGINS` | unset | Comma-separated origins permitted to call the API cross-origin. Unset means same-origin only; `*` is ignored on purpose |
 | `TRUST_PROXY` | `false` | Set to `true` only behind a proxy that overwrites `X-Forwarded-For`, otherwise clients can spoof their rate-limit identity |
 | `ENABLE_HSTS` | `false` | Set to `true` when served over HTTPS |
@@ -114,9 +114,33 @@ Stated plainly, because the interface states it too:
 
 No framework, no build step, no webfonts. `web/` holds three `html/template`
 pages and the static assets; everything is embedded into the binary with
-`go:embed`, fingerprinted at startup, and served with immutable caching. The
-brand system lives in `web/static/njiralab.css`; Njira Vault's darker surface
-treatment is layered on top in `web/static/vault.css`.
+`go:embed`, fingerprinted and gzipped at startup, and served with immutable
+caching. The system lives in `web/static/njiralab.css`; Njira Vault adds only
+what a working interface needs in `web/static/vault.css`.
+
+The layout language is editorial rather than SaaS: sections are organised by a
+rail of small labels and hairline rules, not by stacking rounded containers.
+A card is used only where something genuinely is an interface object — the
+Vault form is one, an "about" paragraph is not. Corners stay at 4px, the type
+scale is deliberately narrow so the hero is the only large thing on the page,
+and the philosophy statement is the single place the page changes voice, set
+in a system serif.
+
+### Product imagery
+
+The Njira Vault images on the homepage are screenshots of the real running
+product, captured at two widths so the interface stays readable on phones as
+well as desktops. Regenerate them after any change to the Vault UI:
+
+```bash
+BASE_URL=https://njiralab.com go run .          # in one shell
+node tools/capture-product-shots.mjs            # in another (needs Playwright)
+```
+
+**StudyZora has no screenshot in this repository.** Rather than mock up an
+interface we do not have, that section falls back to a typographic treatment.
+Drop a real capture at `web/static/studyzora.png` and it is picked up
+automatically on the next build — no template change needed.
 
 ## Naming
 
