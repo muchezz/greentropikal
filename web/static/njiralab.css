@@ -1,6 +1,6 @@
 /* NjiraLabs design system
    -----------------------
-   Bright, white-first, Inter. Structure comes from generous whitespace and 1px
+   Bright, white-first, Geist. Structure comes from generous whitespace and 1px
    #EBEBEB hairlines; controls are pills, surfaces keep generous rectangular
    corners, and shadows are absent except under product screenshots.
 
@@ -17,14 +17,11 @@
    -deep step, which clears AA. */
 
 @font-face {
-  font-family: "Inter";
+  font-family: "Geist";
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("/static/inter.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
-    U+2212, U+2215, U+FEFF, U+FFFD;
+  src: url("/static/geist.woff2") format("woff2");
 }
 
 :root {
@@ -56,14 +53,14 @@
   --accent-deep: var(--green-deep);
   --accent-tint: var(--green-tint);
 
-  --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+  --sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
     "Liberation Mono", monospace;
 
   --wrap: 1240px;
   --pad: 40px;
-  --nav-h: 68px;
+  --nav-h: 76px;
 
   /* Radii carry the whole feel: controls are pills, surfaces are generous. */
   --r-pill: 9999px;
@@ -329,52 +326,39 @@ code {
   position: sticky;
   top: 0;
   z-index: 50;
-  height: var(--nav-h);
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--border);
+  padding-block: 12px;
 }
 
-/* The blur lives on a pseudo-element, not on .nav itself: backdrop-filter
-   makes an element the containing block for its fixed-position descendants,
-   which would trap the mobile drawer inside the 68px header. */
-.nav::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: saturate(180%) blur(12px);
-  -webkit-backdrop-filter: saturate(180%) blur(12px);
-}
-
+/* A floating pill rather than a full-width bar: the page runs underneath it
+   on both sides. It is a solid fill, not a blur — backdrop-filter here would
+   make .nav__inner the containing block for the fixed mobile drawer. */
 .nav__inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  width: min(var(--wrap), 100% - (var(--pad) * 2));
+  gap: 1.5rem;
+  width: fit-content;
+  max-width: min(var(--wrap), 100% - (var(--pad) * 2));
   margin-inline: auto;
+  padding: 8px 8px 8px 20px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  margin-right: 1.75rem;
+  gap: 0.5rem;
 }
 
 .brand__mark {
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   flex: none;
 }
 
-/* The wordmark is HTML text in Inter: the supplied lockup SVG draws its text
-   with an SVG <text> element that falls back to Arial wherever Inter is not
-   installed locally. */
 .brand__word {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 700;
   letter-spacing: -0.04em;
   color: var(--ink);
@@ -538,27 +522,40 @@ code {
 /* ---------- Hero ---------- */
 
 .hero {
-  padding-block: clamp(4rem, 9vw, 7.5rem) clamp(3rem, 5vw, 4.5rem);
+  padding-block: clamp(3.5rem, 8vw, 7rem) clamp(2.5rem, 5vw, 4.5rem);
 }
 
-/* Statement left, explanation opposite. Neither column carries the full
-   measure, so the headline can run large without the prose running long. */
-.hero__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
-  gap: clamp(2rem, 5vw, 4rem);
+.hero__inner {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
-.hero__lead {
-  max-width: 640px;
+/* The company's own mark, at the size an app icon sits in the reference. */
+.hero__mark {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  box-shadow: 0 10px 30px rgba(15, 13, 32, 0.07);
+}
+
+.hero__mark img {
+  width: 40px;
+  height: 40px;
 }
 
 .hero__title {
-  font-size: clamp(2.5rem, 5.2vw, 4rem);
-  font-weight: 500;
-  letter-spacing: -0.04em;
-  line-height: 1.05;
+  max-width: 16ch;
+  font-size: clamp(2.5rem, 6.4vw, 4.75rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
 }
 
 .hero__title em {
@@ -567,24 +564,24 @@ code {
 }
 
 .hero__lede {
-  max-width: 420px;
-  font-size: 18px;
-  line-height: 1.6;
+  margin-top: clamp(1.25rem, 2.2vw, 1.75rem);
+  max-width: min(58ch, 100%);
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  line-height: 1.55;
   letter-spacing: -0.01em;
   color: var(--body);
-}
-
-.hero__lede em {
-  font-style: normal;
-  font-weight: 500;
-  color: var(--ink);
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.75rem;
-  margin-top: clamp(1.75rem, 2.6vw, 2.25rem);
+  margin-top: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.hero__actions .btn--outline {
+  background: var(--white);
 }
 
 /* ---------- Product panel ----------
@@ -1246,28 +1243,8 @@ code {
     --pad: 24px;
   }
 
-  .hero__grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.75rem;
-    align-items: start;
-  }
-
-  .hero__lead {
-    display: contents;
-  }
-
   .hero__title {
-    order: 1;
-  }
-
-  .hero__lede {
-    order: 2;
     max-width: 100%;
-  }
-
-  .hero__actions {
-    order: 3;
-    margin-top: 0.5rem;
   }
 
   .stage-panel__bar {

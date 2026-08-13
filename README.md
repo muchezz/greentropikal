@@ -135,17 +135,31 @@ has to carry text it uses its `-dark` step (`#6D28D9`, `#B45309`) to clear AA;
 the display values stay on fills. Bright green `#22C55E` is 2.5:1 on white and
 is confined to the hero gradient and the mark.
 
-Type is Inter, self-hosted as a single variable `woff2` covering 100–900 across
-latin (48 KB), so the page still makes no third-party requests.
+Type is **Geist**, self-hosted as a single variable `woff2` covering 100–900
+(68 KB), so the page still makes no third-party requests. Geist is licensed
+under the SIL Open Font License, which permits redistribution; the licence
+travels with it at `web/static/geist-OFL.txt`. It replaced Inter because it is
+the closest freely-redistributable match to the reference's grotesque — the
+reference itself almost certainly uses a commercial face, which cannot be
+self-hosted here without a purchased web licence.
+
+The `unicode-range` that Inter carried was dropped with it. That range omitted
+U+2192, the arrow set in every button, so the arrows had been silently falling
+back to a system font.
 
 Greys are picked against contrast rather than taste: `--body` `#666666` is
 5.7:1 on white and 5.3:1 on the panel, and `--muted` `#707070` is the lightest
 grey that still clears AA on the panel background it has to sit on.
 
-The homepage follows a restrained, light system: a 68px translucent header
-that blurs the page behind it, a 1240px measure with 40px gutters, and #EBEBEB
-hairlines doing the dividing work that borders and shadows would otherwise do.
-Shadows are effectively absent except beneath product screenshots.
+The homepage follows a restrained, light system: a floating pill header that
+the page scrolls underneath on both sides, a 1240px measure with 40px gutters,
+and #EBEBEB hairlines doing the dividing work that borders and shadows would
+otherwise do. Shadows are effectively absent except beneath product
+screenshots.
+
+The header pill is a solid fill rather than a blur, deliberately. An element
+with a `backdrop-filter` becomes the containing block for its fixed-position
+descendants, which collapses the mobile drawer nested inside it.
 
 Two decisions carry the feel. **Every control is a pill** — 44px for the
 page's primary calls to action, 36px inline — while surfaces stay rectangular
@@ -154,10 +168,9 @@ inner bars, 12px on screenshots and text inputs. And **display type sits at
 weight 500, not 800**: at 64px the letterforms carry the emphasis on their
 own, and extra weight only makes them shout.
 
-**The hero is split.** The statement holds the left at up to 4rem; the
-sentence that explains it sits opposite rather than beneath, so neither column
-has to carry the full measure — the headline can run large without the prose
-running long. Below 820px it stacks to statement, explanation, actions.
+**The hero is centred**: the company mark in a rounded tile, one statement at
+up to 4.75rem, one sentence, two actions. Nothing else — the proof arrives
+immediately below it.
 
 **Under the hero is the product panel.** A washed 28px surface holding the
 real Njira Vault interface in its own chrome, a label-caps chip naming the

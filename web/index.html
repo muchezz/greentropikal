@@ -27,7 +27,7 @@
 <link rel="alternate icon" href="{{ asset "favicon.png" }}" sizes="32x32">
 <link rel="mask-icon" href="{{ asset "favicon.svg" }}" color="#16A34A">
 <link rel="apple-touch-icon" href="{{ asset "apple-touch-icon.png" }}">
-<link rel="preload" href="{{ asset "inter.woff2" }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ asset "geist.woff2" }}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{{ asset "njiralab.css" }}">
 <script src="{{ asset "njiralab.js" }}" defer></script>
 </head>
@@ -82,19 +82,22 @@
 <main id="main">
 
   <!-- Hero -->
-  <!-- Split hero: the statement holds the left, the explanation sits opposite
-       it rather than beneath it, so neither has to carry the full width. -->
+  <!-- Centred hero: the mark, one statement, one sentence, two actions. -->
   <section class="hero">
-    <div class="wrap hero__grid">
-      <div class="hero__lead">
-        <h1 class="hero__title">Building technology for <em>human progress.</em></h1>
-        <div class="hero__actions">
-          <a class="btn btn--solid" href="#products">Explore our products <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
-          <a class="btn btn--outline" href="#contact">Work with us</a>
-        </div>
-      </div>
+    <div class="wrap hero__inner">
+      <span class="hero__mark">
+        <img src="{{ asset "mark.svg" }}" alt="" width="40" height="40">
+      </span>
+
+      <h1 class="hero__title">Building technology for <em>human progress.</em></h1>
+
       <p class="hero__lede">NjiraLabs builds intelligent products and the systems they run
-        on &mdash; software that helps people <em>learn</em>, <em>build</em>, and <em>go further</em>.</p>
+        on &mdash; software that helps people learn, build, and go further.</p>
+
+      <div class="hero__actions">
+        <a class="btn btn--solid" href="#products">Explore our products</a>
+        <a class="btn btn--outline" href="#contact">Work with us <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+      </div>
     </div>
   </section>
 
